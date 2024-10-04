@@ -1,0 +1,10 @@
+{
+  "name": "airswap-otc-metamask-snaps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Mike Starr <imhs@protonmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@metamask/snaps-sdk": "^6.7.0"
+  }
+}
