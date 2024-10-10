@@ -5,6 +5,7 @@ type TextInputProps = {
   type?: 'text' | 'number';
   placeholder: string;
   defaultValue?: string | number;
+  onTextChange: (value: any) => void;
 };
 
 const Input = styled.input`
@@ -31,14 +32,17 @@ export const TextInput = ({
   type = 'text',
   placeholder,
   defaultValue,
+  onTextChange,
 }: TextInputProps) => {
   const [inputValue, setInputValue] = useState<string | number>(
-    defaultValue ?? (type === 'number' ? 1 : ''),
+    defaultValue ?? '',
   );
 
   // eslint-disable-next-line id-length
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    const value = type === 'number' ? Number(e.target.value) : e.target.value;
+    setInputValue(value);
+    onTextChange(value);
   };
 
   return (

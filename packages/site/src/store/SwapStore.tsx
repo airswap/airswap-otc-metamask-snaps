@@ -1,14 +1,16 @@
 import { create } from 'zustand';
 
-type ForAddressValues = 'anyone' | 'specificTaker';
+type TakerTypeValues = 'anyone' | 'specificTaker';
 
 type SwapStore = {
   fromToken: string | undefined;
   toToken: string | undefined;
   sendAmount: number | undefined;
   receiveAmount: number | undefined;
-  forAddress: ForAddressValues;
-  duration: string;
+  takerType: TakerTypeValues; // Updated from 'forAddress' to 'takerType'
+  takerAddress: string | undefined; // New takerAddress for ETH or ENS address
+  durationLength: number;
+  durationUnits: string;
   expiry: number;
   rate: number;
   fee: number;
@@ -17,8 +19,10 @@ type SwapStore = {
   setToToken: (token: string | undefined) => void;
   setSendAmount: (amount: number | undefined) => void;
   setReceiveAmount: (amount: number | undefined) => void;
-  setForAddress: (value: ForAddressValues) => void;
-  setDuration: (duration: string) => void;
+  setTakerType: (value: TakerTypeValues) => void; // Updated from 'setForAddress' to 'setTakerType'
+  setTakerAddress: (address: string | undefined) => void; // New setter for takerAddress
+  setDurationLength: (durationLength: number) => void;
+  setDurationUnits: (durationUnits: string) => void;
   setExpiry: (date: number) => void;
   setRate: (rate: number) => void;
   setFee: (fee: number) => void;
@@ -26,12 +30,14 @@ type SwapStore = {
 };
 
 export const useSwapStore = create<SwapStore>((set) => ({
-  fromToken: '',
-  toToken: '',
+  fromToken: undefined,
+  toToken: undefined,
   sendAmount: 0,
   receiveAmount: 0,
-  forAddress: 'anyone',
-  duration: 'hours',
+  takerType: 'anyone', // Default value 'anyone'
+  takerAddress: undefined, // Starts undefined until user enters it
+  durationLength: 1,
+  durationUnits: 'hours',
   expiry: Math.floor(Date.now() / 1000),
   rate: 0,
   fee: 0,
@@ -41,8 +47,11 @@ export const useSwapStore = create<SwapStore>((set) => ({
   setSendAmount: (amount: number | undefined) => set({ sendAmount: amount }),
   setReceiveAmount: (amount: number | undefined) =>
     set({ receiveAmount: amount }),
-  setForAddress: (value: ForAddressValues) => set({ forAddress: value }),
-  setDuration: (duration: string) => set({ duration }),
+  setTakerType: (value: TakerTypeValues) => set({ takerType: value }), // Updated to setTakerType
+  setTakerAddress: (address: string | undefined) =>
+    set({ takerAddress: address }), // New setter for takerAddress
+  setDurationLength: (durationLength: number) => set({ durationLength }),
+  setDurationUnits: (durationUnits: string) => set({ durationUnits }),
   setExpiry: (date: number) => set({ expiry: date }),
   setRate: (rate: number) => set({ rate }),
   setFee: (fee: number) => set({ fee }),

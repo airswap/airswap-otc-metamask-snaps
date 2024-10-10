@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type InputWrapperProps = {
-  isHidden: 'anyone' | 'specificTaker';
+  isHidden: boolean;
 };
 
 export const Container = styled.div`
@@ -62,7 +62,7 @@ export const ForContainer = styled.div`
 `;
 
 export const InputWrapper = styled.div<InputWrapperProps>`
-  display: ${({ isHidden }) => (isHidden === 'anyone' ? 'none' : 'flex')};
+  display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
   width: 100%;
   margin: 2rem 0;
 `;
