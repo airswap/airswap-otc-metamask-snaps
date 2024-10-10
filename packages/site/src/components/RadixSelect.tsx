@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import * as Select from '@radix-ui/react-select';
 import styled from 'styled-components';
 
@@ -11,7 +10,7 @@ type SelectProps = {
   ariaLabel: string;
   placeholder: string;
   items: SelectItem[];
-  onSelectChange: (value: string) => void;
+  onSelectChange: (value: any) => void;
 };
 
 const StyledTrigger = styled(Select.Trigger)`

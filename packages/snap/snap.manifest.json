@@ -4,14 +4,14 @@
   "proposedName": "AirSwap OTC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "https://github.com/airswap/airswap-otc-metamask-snaps.git"
   },
   "source": {
-    "shasum": "jmzZ7hmq7/LgXG1Xh4Ac/cXKRUKsJ1qCYuWJni+tyBY=",
+    "shasum": "dgpNcbMkLq9z+mXnL/fNUifTSDNEcft7mwavx3bENno=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
-        "packageName": "snap",
+        "packageName": "airswap-otc-snap",
         "registry": "https://registry.npmjs.org/"
       }
     }

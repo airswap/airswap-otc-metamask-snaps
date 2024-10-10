@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import { Button, RadixSelect, TextInput } from '../../components';
+import { useSwapStore } from '../../store/SwapStore';
 import {
   ButtonWrapper,
   Container,
@@ -23,23 +22,18 @@ const hoursItems = [
 
 const forItems = [
   { value: 'anyone', label: 'ANYONE' },
-  { value: 'specificTake', label: 'SPECIFIC TAKER' },
+  { value: 'specificTaker', label: 'SPECIFIC TAKER' },
 ];
 
 export const SwapWidget = () => {
-  const [duration, setDuration] = useState<string>('hours');
-  const [isForAnyone, setIsForAnyone] = useState(true);
+  const { forAddress, setForAddress, setDuration } = useSwapStore();
 
   const handleDurationChange = (value: string) => {
     setDuration(value);
   };
 
-  const handleOnForChange = (value: string) => {
-    if (value === 'anyone') {
-      setIsForAnyone(true);
-    } else {
-      setIsForAnyone(false);
-    }
+  const handleOnForChange = (value: 'anyone' | 'specificTaker') => {
+    setForAddress(value);
   };
 
   return (
@@ -73,7 +67,7 @@ export const SwapWidget = () => {
           onSelectChange={handleOnForChange}
         />
       </ForContainer>
-      <InputWrapper isHidden={isForAnyone}>
+      <InputWrapper isHidden={forAddress}>
         <TextInput placeholder="Enter taker address or ENS" />
       </InputWrapper>
       <ButtonWrapper>
