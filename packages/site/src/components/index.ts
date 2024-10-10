@@ -5,3 +5,4 @@ export * from './MetaMask';
 export * from './PoweredBy';
 export * from './Toggle';
 export * from './RadixSelect';
+export * from './TextInput';

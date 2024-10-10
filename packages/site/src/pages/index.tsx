@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { SwapWidget } from './SwapWidget';
+import { SwapWidget } from './SwapWidget/SwapWidget';
 
 // import { defaultSnapOrigin } from '../config';
 // import {
