@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-import { RadixSelect, TextInput } from '../../components';
+import { Button, RadixSelect, TextInput } from '../../components';
 import {
+  ButtonWrapper,
   Container,
+  DurationContainer,
   ForContainer,
   HeaderInputContainer,
   HorizontalFlexBox,
@@ -45,7 +47,10 @@ export const SwapWidget = () => {
       <HorizontalFlexBox>
         <SubHeading>Make</SubHeading>
         <HeaderInputContainer>
-          <div>Expires In</div>
+          <SelectLabel>Expires In</SelectLabel>
+          <DurationContainer>
+            <TextInput type="number" placeholder="1" />
+          </DurationContainer>
           <RadixSelect
             ariaLabel="hours"
             placeholder="HOURS"
@@ -71,6 +76,9 @@ export const SwapWidget = () => {
       <InputWrapper isHidden={isForAnyone}>
         <TextInput placeholder="Enter taker address or ENS" />
       </InputWrapper>
+      <ButtonWrapper>
+        <Button label={'review'} />
+      </ButtonWrapper>
     </Container>
   );
 };

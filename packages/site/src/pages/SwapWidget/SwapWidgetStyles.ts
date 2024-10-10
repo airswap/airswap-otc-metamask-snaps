@@ -29,10 +29,20 @@ export const SubHeading = styled.h3`
 
 export const HeaderInputContainer = styled.div`
   display: flex;
-  place-items: center;
-  padding: 0.5rem;
+  align-items: center;
+  justify-content: end;
+`;
+
+export const SelectLabel = styled.span`
+  padding: 1rem;
   border: solid gray 1px;
-  border-radius: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+`;
+
+export const DurationContainer = styled.div`
+  width: 4rem;
+  border: solid gray 1px;
 `;
 
 export const TokenSelectorsContainer = styled.div`
@@ -51,15 +61,13 @@ export const ForContainer = styled.div`
   align-items: center;
 `;
 
-export const SelectLabel = styled.span`
-  padding: 1rem 0.5rem 1rem 1rem;
-  border: solid gray 1px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-`;
-
 export const InputWrapper = styled.div<InputWrapperProps>`
   display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
   width: 100%;
   margin: 2rem 0;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  margin: 2rem;
 `;
