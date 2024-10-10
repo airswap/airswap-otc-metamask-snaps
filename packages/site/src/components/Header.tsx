@@ -2,7 +2,6 @@ import styled, { useTheme } from 'styled-components';
 
 import { getThemePreference } from '../utils';
 import { HeaderButtons } from './Buttons';
-import { SnapLogo } from './SnapLogo';
 import { Toggle } from './Toggle';
 
 const HeaderWrapper = styled.header`
@@ -41,12 +40,9 @@ export const Header = ({
 }: {
   handleToggleClick(): void;
 }) => {
-  const theme = useTheme();
-
   return (
     <HeaderWrapper>
       <LogoWrapper>
-        <SnapLogo color={theme.colors.icon?.default} size={36} />
         <Title>template-snap</Title>
       </LogoWrapper>
       <RightContainer>

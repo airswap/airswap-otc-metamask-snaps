@@ -56,5 +56,9 @@
       "@lavamoat/preinstall-always-fail": false,
       "sharp": true
     }
+  },
+  "dependencies": {
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-select": "^2.1.2"
   }
 }
