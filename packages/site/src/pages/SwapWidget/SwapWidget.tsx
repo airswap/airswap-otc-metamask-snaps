@@ -1,5 +1,6 @@
 import { Button, RadixSelect, TextInput } from '../../components';
 import { useSwapStore } from '../../store/SwapStore';
+import { FromToken } from '../FromToken/FromToken';
 import {
   ButtonWrapper,
   Container,
@@ -10,7 +11,6 @@ import {
   InputWrapper,
   SelectLabel,
   SubHeading,
-  TokenSelectorsContainer,
 } from './SwapWidgetStyles';
 
 const hoursItems = [
@@ -75,9 +75,8 @@ export const SwapWidget = () => {
           />
         </HeaderInputContainer>
       </HorizontalFlexBox>
-      <TokenSelectorsContainer>
-        <div>***placeholder***</div>
-      </TokenSelectorsContainer>
+      <FromToken />
+      <FromToken />
       <ForContainer>
         <SelectLabel>For</SelectLabel>
         <RadixSelect
