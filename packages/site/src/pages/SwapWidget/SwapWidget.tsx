@@ -1,4 +1,4 @@
-import { Button, RadixSelect, TextInput } from '../../components';
+import { Button, NumberInput, RadixSelect, TextInput } from '../../components';
 import { useSwapStore } from '../../store/SwapStore';
 import { FromToken } from '../FromToken/FromToken';
 import {
@@ -60,12 +60,7 @@ export const SwapWidget = () => {
         <HeaderInputContainer>
           <SelectLabel>Expires In</SelectLabel>
           <DurationContainer>
-            <TextInput
-              type="number"
-              placeholder="1"
-              defaultValue={1}
-              onTextChange={handleDurationLength}
-            />
+            <NumberInput placeholder="1" onTextChange={handleDurationLength} />
           </DurationContainer>
           <RadixSelect
             ariaLabel="hours"

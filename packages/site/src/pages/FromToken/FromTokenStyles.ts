@@ -6,8 +6,9 @@ export const FromTokenContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
+  margin: 1rem;
   font-size: 18px;
-  border: solid white 1px;
+  border: solid darkgray 1px;
   border-radius: 2px;
 `;
 
