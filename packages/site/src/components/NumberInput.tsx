@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-type TextInputProps = {
+type NumberInputProps = {
   placeholder: string;
-  defaultValue?: string;
-  onTextChange: (value: string) => void;
+  onTextChange: (value: number) => void;
 };
 
 const Input = styled.input`
@@ -15,25 +14,33 @@ const Input = styled.input`
   padding: 1rem;
   background: #181228;
   color: white;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
-export const TextInput = ({
+export const NumberInput = ({
   placeholder,
-  defaultValue = '',
   onTextChange,
-}: TextInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(defaultValue);
+}: NumberInputProps) => {
+  const [inputValue, setInputValue] = useState<number | undefined>(undefined);
 
   // eslint-disable-next-line id-length
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setInputValue(value);
-    onTextChange(value);
+    const value = parseFloat(e.target.value);
+    if (!isNaN(value)) {
+      setInputValue(value);
+      onTextChange(value);
+    }
   };
 
   return (
     <Input
-      type="text"
+      type="number"
+      min={0}
       placeholder={placeholder}
       value={inputValue}
       onChange={handleInputChange}

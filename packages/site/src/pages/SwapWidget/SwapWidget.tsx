@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
-import { Button, RadixSelect, TextInput } from '../../components';
+import { Button, NumberInput, RadixSelect, TextInput } from '../../components';
+import { useSwapStore } from '../../store/SwapStore';
+import { FromToken } from '../FromToken/FromToken';
 import {
   ButtonWrapper,
   Container,
@@ -11,7 +11,6 @@ import {
   InputWrapper,
   SelectLabel,
   SubHeading,
-  TokenSelectorsContainer,
 } from './SwapWidgetStyles';
 
 const hoursItems = [
@@ -21,25 +20,37 @@ const hoursItems = [
   { value: 'weeks', label: 'WEEKS' },
 ];
 
-const forItems = [
+const takerItems = [
   { value: 'anyone', label: 'ANYONE' },
-  { value: 'specificTake', label: 'SPECIFIC TAKER' },
+  { value: 'specificTaker', label: 'SPECIFIC TAKER' },
 ];
 
 export const SwapWidget = () => {
-  const [duration, setDuration] = useState<string>('hours');
-  const [isForAnyone, setIsForAnyone] = useState(true);
+  const {
+    takerType,
+    setTakerType,
+    setTakerAddress,
+    setDurationLength,
+    setDurationUnits,
+  } = useSwapStore();
 
-  const handleDurationChange = (value: string) => {
-    setDuration(value);
+  const handleDurationLength = (value: number) => {
+    setDurationLength(value);
   };
 
-  const handleOnForChange = (value: string) => {
+  const handleDurationUnits = (value: string) => {
+    setDurationUnits(value);
+  };
+
+  const handleTakerType = (value: 'anyone' | 'specificTaker') => {
+    setTakerType(value);
     if (value === 'anyone') {
-      setIsForAnyone(true);
-    } else {
-      setIsForAnyone(false);
+      setTakerAddress(undefined);
     }
+  };
+
+  const handleTakerAddressChange = (value: string) => {
+    setTakerAddress(value);
   };
 
   return (
@@ -49,32 +60,32 @@ export const SwapWidget = () => {
         <HeaderInputContainer>
           <SelectLabel>Expires In</SelectLabel>
           <DurationContainer>
-            <TextInput type="number" placeholder="1" />
+            <NumberInput placeholder="1" onTextChange={handleDurationLength} />
           </DurationContainer>
           <RadixSelect
             ariaLabel="hours"
             placeholder="HOURS"
             items={hoursItems}
-            onSelectChange={handleDurationChange}
+            onSelectChange={handleDurationUnits}
           />
         </HeaderInputContainer>
       </HorizontalFlexBox>
-      <TokenSelectorsContainer>
-        <span>from</span>
-        <br />
-        <span>to</span>
-      </TokenSelectorsContainer>
+      <FromToken />
+      <FromToken />
       <ForContainer>
         <SelectLabel>For</SelectLabel>
         <RadixSelect
           ariaLabel="for"
           placeholder="ANYONE"
-          items={forItems}
-          onSelectChange={handleOnForChange}
+          items={takerItems}
+          onSelectChange={handleTakerType}
         />
       </ForContainer>
-      <InputWrapper isHidden={isForAnyone}>
-        <TextInput placeholder="Enter taker address or ENS" />
+      <InputWrapper isHidden={takerType !== 'specificTaker'}>
+        <TextInput
+          placeholder="Enter taker address or ENS"
+          onTextChange={handleTakerAddressChange}
+        />
       </InputWrapper>
       <ButtonWrapper>
         <Button label={'review'} />

@@ -1,4 +1,4 @@
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { getThemePreference } from '../utils';
 import { HeaderButtons } from './Buttons';
@@ -43,7 +43,7 @@ export const Header = ({
   return (
     <HeaderWrapper>
       <LogoWrapper>
-        <Title>template-snap</Title>
+        <Title>AirSwap</Title>
       </LogoWrapper>
       <RightContainer>
         <Toggle
