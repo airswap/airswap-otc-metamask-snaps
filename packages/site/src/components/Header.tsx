@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { getThemePreference } from '../utils';
 import { HeaderButtons } from './Buttons';
-import { Toggle } from './Toggle';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -35,21 +33,13 @@ const RightContainer = styled.div`
   align-items: center;
 `;
 
-export const Header = ({
-  handleToggleClick,
-}: {
-  handleToggleClick(): void;
-}) => {
+export const Header = () => {
   return (
     <HeaderWrapper>
       <LogoWrapper>
         <Title>AirSwap</Title>
       </LogoWrapper>
       <RightContainer>
-        <Toggle
-          onToggle={handleToggleClick}
-          defaultChecked={getThemePreference()}
-        />
         <HeaderButtons />
       </RightContainer>
     </HeaderWrapper>

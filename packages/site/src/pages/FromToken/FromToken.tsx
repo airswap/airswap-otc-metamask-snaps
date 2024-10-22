@@ -1,12 +1,11 @@
-import { RadixSelect, NumberInput } from '../../components';
+import { RadixSelect } from '../../components';
+import { NumberInput } from '../../components/NumberInput';
 import { useSwapStore } from '../../store/SwapStore';
 import {
   AmountWrapper,
   FromTokenContainer,
   TokenSelector,
 } from './FromTokenStyles';
-
-// type FromTokenProps = {};
 
 export const FromToken = () => {
   const { setFromToken, setFromAmount } = useSwapStore();
