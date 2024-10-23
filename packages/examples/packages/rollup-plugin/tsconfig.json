@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "./",
-    "composite": false
-  },
-  "include": ["src", "rollup.config.js"]
-}
