@@ -1,0 +1,63 @@
+import { Wrapper, BatchCall } from '@airswap/libraries';
+import type { BigNumber, ethers } from 'ethers';
+
+import { getSwapErc20Address } from '../../helpers/swapErc20';
+
+type WalletParams = {
+  chainId: number;
+  provider: ethers.providers.Web3Provider;
+  walletAddress: string;
+  tokenAddresses: string[];
+};
+
+/**
+ * Fetches balances or allowances for a wallet using the AirSwap utility
+ * contract `BalanceChecker.sol`. Balances are returned in base units.
+ *
+ * @param method - Specifies whether to fetch wallet balances or allowances.
+ * @param spenderAddressType - Determines the address type to use as the spender in the allowance check.
+ * @param params - Object containing parameters for the wallet.
+ * @param params.chainId - The chain ID of the network.
+ * @param params.provider - The Web3 provider for making contract calls.
+ * @param params.walletAddress - The wallet address to fetch balances or allowances for.
+ * @param params.tokenAddresses - Array of token addresses to check balances or allowances for.
+ * @returns A promise that resolves to an array of balances or allowances as strings.
+ */
+const fetchBalancesOrAllowances: (
+  method: 'walletBalances' | 'walletAllowances',
+  spenderAddressType: 'Wrapper' | 'Swap' | 'None',
+  params: WalletParams,
+) => Promise<string[]> = async (
+  method,
+  spenderAddressType,
+  { chainId, provider, tokenAddresses, walletAddress },
+) => {
+  const contract = BatchCall.getContract(provider, chainId);
+  const args =
+    // eslint-disable-next-line no-nested-ternary
+    method === 'walletBalances'
+      ? [walletAddress, tokenAddresses]
+      : spenderAddressType === 'Swap'
+      ? [walletAddress, getSwapErc20Address(chainId), tokenAddresses]
+      : [walletAddress, Wrapper.getAddress(chainId), tokenAddresses];
+  const amounts: BigNumber[] = await contract[method].apply(null, args);
+  return amounts.map((amount) => amount.toString());
+};
+
+const fetchBalances = fetchBalancesOrAllowances.bind(
+  null,
+  'walletBalances',
+  'None',
+);
+const fetchAllowancesSwap = fetchBalancesOrAllowances.bind(
+  null,
+  'walletAllowances',
+  'Swap',
+);
+const fetchAllowancesWrapper = fetchBalancesOrAllowances.bind(
+  null,
+  'walletAllowances',
+  'Wrapper',
+);
+
+export { fetchBalances, fetchAllowancesSwap, fetchAllowancesWrapper };
