@@ -1,3 +1,4 @@
+import { useBalances } from 'src/features/balances/hooks/useBalances';
 import styled from 'styled-components';
 
 import {
@@ -92,6 +93,13 @@ const Index = () => {
   const { isFlask, snapsDetected, installedSnap } = useMetaMask();
   const requestSnap = useRequestSnap();
   const invokeSnap = useInvokeSnap();
+
+  // useBalances({
+  //   provider,
+  //   chainId,
+  //   walletAddress,
+  //   tokenAddresses,
+  // });
 
   const isMetaMaskReady = isLocalSnap(defaultSnapOrigin)
     ? isFlask

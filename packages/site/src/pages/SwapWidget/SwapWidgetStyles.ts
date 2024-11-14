@@ -8,12 +8,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 50%;
   padding: 2rem;
   border-radius: 3px;
   border: solid gray 1px;
   background: black;
   font-size: 12px;
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    width: 70%;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const HorizontalFlexBox = styled.div`
