@@ -15,6 +15,7 @@ import {
   useRequestSnap,
 } from '../hooks';
 import { isLocalSnap, shouldDisplayReconnectButton } from '../utils';
+import { SignedOrderScreen } from './SignedOrderScreen/SignedOrderScreen';
 import { SwapWidget } from './SwapWidget/SwapWidget';
 
 const Container = styled.div`
@@ -106,6 +107,16 @@ const Index = () => {
       <Heading>AirSwap OTC</Heading>
       <SwapWidget />
 
+      <SignedOrderScreen
+        fromToken={undefined}
+        toToken={undefined}
+        fromTokenAmount={undefined}
+        toTokenAmount={undefined}
+        specifiedTaker={undefined}
+        expiry={undefined}
+      />
+
+      {/* Snaps boilerplate code below */}
       <CardContainer>
         {error && (
           <ErrorMessage>
