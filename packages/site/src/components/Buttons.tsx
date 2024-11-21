@@ -7,6 +7,7 @@ import { shouldDisplayReconnectButton } from '../utils';
 
 type SwapButtonProps = {
   label: string;
+  onClick: () => void;
 };
 
 const Link = styled.a`
@@ -145,6 +146,6 @@ export const HeaderButtons = () => {
   );
 };
 
-export const SwapButton = ({ label }: SwapButtonProps) => {
-  return <StyledSwapButton>{label}</StyledSwapButton>;
+export const SwapButton = ({ label, onClick }: SwapButtonProps) => {
+  return <StyledSwapButton onClick={onClick}>{label}</StyledSwapButton>;
 };

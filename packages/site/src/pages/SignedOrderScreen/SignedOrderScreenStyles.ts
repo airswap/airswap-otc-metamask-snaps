@@ -15,8 +15,8 @@ export const FromTokenBox = styled.div`
   justify-content: space-between;
   width: 100%;
   background: #13203c;
-  border: ##34425c solid 1px;
-  border-radius: 8px;
+  border: #34425c solid 1.5px;
+  border-radius: 12px;
   padding: 1rem;
 `;
 
@@ -25,8 +25,8 @@ export const ToTokenBox = styled.div`
   justify-content: space-between;
   width: 100%;
   background: #13203c;
-  border: ##34425c solid 1px;
-  border-radius: 8px;
+  border: #34425c solid 1.5px;
+  border-radius: 12px;
   padding: 1rem;
 `;
 
@@ -35,8 +35,8 @@ export const SpecifiedTakerAndExpiryBox = styled.div`
   justify-content: space-between;
   width: 100%;
   background: #13203c;
-  border: ##34425c solid 1px;
-  border-radius: 8px;
+  border: #34425c solid 1.5px;
+  border-radius: 12px;
   padding: 1rem;
 `;
 
@@ -50,7 +50,7 @@ export const ActionButtonsBox = styled.div`
 
 export const VerticalBox = styled.div`
   display: flex;
-  flex-direction: vertical;
+  flex-direction: column;
   margin: 1rem;
 `;
 
