@@ -1,4 +1,5 @@
-import { SwapButton } from '../../components/Buttons';
+import { SwapButton } from '../../components';
+import { useSwapStore } from '../../stores/SwapStore';
 import {
   ReviewHeadline,
   ReviewScreenContainer,
@@ -7,30 +8,21 @@ import {
   ActionButtonsBox,
 } from './ReviewScreenStyles';
 
-type ReviewScreenProps = {
-  fromToken: `0x${string}` | undefined;
-  toToken: `0x${string}` | undefined;
-  fromTokenAmount: bigint | undefined;
-  toTokenAmount: bigint | undefined;
-  specifiedTaker: `0x${string}` | undefined;
-  expiry: number | undefined;
-};
+export const ReviewScreen = () => {
+  const fromToken = useSwapStore((state) => state.fromToken);
+  const fromAmount = useSwapStore((state) => state.fromAmount);
+  const toToken = useSwapStore((state) => state.toToken);
+  const toAmount = useSwapStore((state) => state.toAmount);
+  const takerAddress = useSwapStore((state) => state.takerAddress);
+  const expiry = useSwapStore((state) => state.expiry);
 
-export const ReviewScreen = ({
-  fromToken,
-  toToken,
-  fromTokenAmount,
-  toTokenAmount,
-  specifiedTaker,
-  expiry,
-}: ReviewScreenProps) => {
   return (
     <ReviewScreenContainer>
       <ReviewHeadline>Review</ReviewHeadline>
       <HorizontalBox>
         <span>Send</span>
         <div>
-          <span>{fromTokenAmount?.toString() ?? 0}</span>{' '}
+          <span>{fromAmount?.toString() ?? 0}</span>{' '}
           <span>{fromToken ?? 'WETH'}</span>
         </div>
       </HorizontalBox>
@@ -38,14 +30,14 @@ export const ReviewScreen = ({
       <HorizontalBox>
         <span>Receive</span>
         <div>
-          <span>{toTokenAmount?.toString() ?? 0}</span>{' '}
+          <span>{toAmount?.toString() ?? 0}</span>{' '}
           <span>{toToken ?? 'USDC'}</span>
         </div>
       </HorizontalBox>
       <LineBreak />
       <HorizontalBox>
         <span>For</span>
-        <span>{specifiedTaker ?? 'anyone'}</span>
+        <span>{takerAddress ?? 'anyone'}</span>
       </HorizontalBox>
       <HorizontalBox>
         <span>Expiry</span>
@@ -57,7 +49,6 @@ export const ReviewScreen = ({
       </HorizontalBox>
       <HorizontalBox>
         <span>Fee</span>
-        {/* FIXME: import `protocolFee` from airswap */}
         <span>0.05 ETH</span>
       </HorizontalBox>
       <HorizontalBox>

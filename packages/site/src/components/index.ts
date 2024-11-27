@@ -4,4 +4,5 @@ export * from './Header';
 export * from './MetaMask';
 export * from './NumberInput';
 export * from './RadixSelect';
+export * from './SwapButton';
 export * from './TextInput';

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 type NumberInputProps = {
+  value?: number;
   placeholder: string;
   onTextChange: (value: number) => void;
 };
@@ -24,16 +25,19 @@ const Input = styled.input`
 
 export const NumberInput = ({
   placeholder,
+  value,
   onTextChange,
 }: NumberInputProps) => {
-  const [inputValue, setInputValue] = useState<number | undefined>(undefined);
+  const [inputValue, setInputValue] = useState<number | undefined>(value);
 
   // eslint-disable-next-line id-length
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    if (!isNaN(value)) {
-      setInputValue(value);
-      onTextChange(value);
+    const newValue = Number(e.target.value); // Renamed variable to avoid shadowing
+    if (Number.isNaN(newValue)) {
+      setInputValue(undefined);
+    } else {
+      setInputValue(newValue);
+      onTextChange(newValue);
     }
   };
 
@@ -42,7 +46,7 @@ export const NumberInput = ({
       type="number"
       min={0}
       placeholder={placeholder}
-      value={inputValue}
+      value={inputValue ?? ''}
       onChange={handleInputChange}
     />
   );

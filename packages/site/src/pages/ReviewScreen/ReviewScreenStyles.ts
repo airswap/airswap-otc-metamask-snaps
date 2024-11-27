@@ -5,8 +5,10 @@ export const ReviewScreenContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 60%;
+  width: 80%;
   gap: 1.5rem;
+  background: black;
+  border: solid white 1px;
 `;
 
 export const ReviewHeadline = styled.h1`

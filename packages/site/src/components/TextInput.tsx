@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 type TextInputProps = {
   placeholder: string;
-  defaultValue?: string;
-  onTextChange: (value: string) => void;
+  defaultValue?: string | undefined;
+  onTextChange: (value: string | undefined) => void;
 };
 
 const Input = styled.input`
@@ -19,14 +20,16 @@ const Input = styled.input`
 
 export const TextInput = ({
   placeholder,
-  defaultValue = '',
+  defaultValue,
   onTextChange,
 }: TextInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(defaultValue);
+  const [inputValue, setInputValue] = useState<string | undefined>(
+    defaultValue,
+  );
 
   // eslint-disable-next-line id-length
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value || undefined;
     setInputValue(value);
     onTextChange(value);
   };
@@ -35,7 +38,7 @@ export const TextInput = ({
     <Input
       type="text"
       placeholder={placeholder}
-      value={inputValue}
+      value={inputValue ?? ''}
       onChange={handleInputChange}
     />
   );

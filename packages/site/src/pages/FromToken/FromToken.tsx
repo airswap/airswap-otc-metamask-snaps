@@ -1,6 +1,5 @@
-import { RadixSelect } from '../../components';
-import { NumberInput } from '../../components/NumberInput';
-import { useSwapStore } from '../../store/SwapStore';
+import { RadixSelect, NumberInput } from '../../components';
+import { useSwapStore } from '../../stores/SwapStore';
 import {
   AmountWrapper,
   FromTokenContainer,
@@ -17,7 +16,7 @@ export const FromToken = () => {
           ariaLabel="from-token"
           placeholder="ETH"
           items={[{ value: 'ether', label: 'ether' }]}
-          onSelectChange={setFromToken}
+          onSelectChange={(value) => setFromToken(value)}
         />
       </TokenSelector>
       <AmountWrapper>

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type TakerTypeValues = 'anyone' | 'specificTaker';
+type TakerTypeValues = 'anyone' | `0x${string}`;
 
 type SwapStore = {
   fromToken: string | undefined;
@@ -14,7 +14,7 @@ type SwapStore = {
   expiry: number;
   rate: number;
   fee: number;
-  total: number; // fromAmount + fee
+
   setFromToken: (token: string | undefined) => void;
   setToToken: (token: string | undefined) => void;
   setFromAmount: (amount: number | undefined) => void;
@@ -26,7 +26,6 @@ type SwapStore = {
   setExpiry: (date: number) => void;
   setRate: (rate: number) => void;
   setFee: (fee: number) => void;
-  setTotal: (total: number) => void;
 };
 
 export const useSwapStore = create<SwapStore>((set) => ({
@@ -41,7 +40,7 @@ export const useSwapStore = create<SwapStore>((set) => ({
   expiry: Math.floor(Date.now() / 1000),
   rate: 0,
   fee: 0,
-  total: 0,
+
   setFromToken: (token: string | undefined) => set({ fromToken: token }),
   setToToken: (token: string | undefined) => set({ toToken: token }),
   setFromAmount: (amount: number | undefined) => set({ fromAmount: amount }),
@@ -54,5 +53,4 @@ export const useSwapStore = create<SwapStore>((set) => ({
   setExpiry: (date: number) => set({ expiry: date }),
   setRate: (rate: number) => set({ rate }),
   setFee: (fee: number) => set({ fee }),
-  setTotal: (total: number) => set({ total }),
 }));

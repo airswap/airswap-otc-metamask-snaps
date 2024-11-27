@@ -1,5 +1,6 @@
-import { SwapButton } from '../../components/Buttons';
+import { SwapButton } from '../../components';
 // import { compressFullOrderURL } from '../../utils/compressFullOrderERC20';
+import { useSwapStore } from '../../stores';
 import {
   ActionButtonsBox,
   FromTokenBox,
@@ -10,23 +11,16 @@ import {
   VerticalBox,
 } from './SignedOrderScreenStyles';
 
-type SignedOrderScreenType = {
-  fromToken: `0x${string}` | undefined;
-  toToken: `0x${string}` | undefined;
-  fromTokenAmount: bigint | undefined;
-  toTokenAmount: bigint | undefined;
-  specifiedTaker: `0x${string}` | undefined;
-  expiry: number | undefined;
-};
-
-export const SignedOrderScreen = ({
-  fromToken,
-  toToken,
-  fromTokenAmount,
-  toTokenAmount,
-  specifiedTaker,
-  expiry,
-}: SignedOrderScreenType) => {
+export const SignedOrderScreen = () => {
+  const { fromToken, fromAmount, toToken, toAmount, takerAddress, expiry } =
+    useSwapStore((state) => ({
+      fromToken: state.fromToken,
+      fromAmount: state.fromAmount,
+      toToken: state.toToken,
+      toAmount: state.toAmount,
+      takerAddress: state.takerAddress,
+      expiry: state.expiry,
+    }));
   // const handleCopyLink = async () => {
   //   // FIXME: Replace `undefined` with actual values
   //   const compressedURL = compressFullOrderURL(undefined);
@@ -49,17 +43,17 @@ export const SignedOrderScreen = ({
           <span>From</span>
           <span>{fromToken ?? 'WETH'}</span>
         </VerticalBox>
-        <HorizontalBox>{fromTokenAmount?.toString() ?? 0}</HorizontalBox>
+        <HorizontalBox>{fromAmount?.toString() ?? 0}</HorizontalBox>
       </FromTokenBox>
       <ToTokenBox>
         <VerticalBox>
           <span>To</span>
           <span>{toToken ?? 'USDC'}</span>
         </VerticalBox>
-        <VerticalBox>{toTokenAmount?.toString() ?? 0}</VerticalBox>
+        <VerticalBox>{toAmount?.toString() ?? 0}</VerticalBox>
       </ToTokenBox>
       <SpecifiedTakerAndExpiryBox>
-        <HorizontalBox>For {specifiedTaker ?? 'Anyone'}</HorizontalBox>
+        <HorizontalBox>For {takerAddress ?? 'Anyone'}</HorizontalBox>
         <HorizontalBox>Expires in {expiry}</HorizontalBox>
       </SpecifiedTakerAndExpiryBox>
       <HorizontalBox>
