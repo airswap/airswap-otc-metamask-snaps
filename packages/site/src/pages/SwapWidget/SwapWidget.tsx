@@ -4,8 +4,10 @@ import {
   TextInput,
   SwapButton,
 } from '../../components';
+import type { DurationUnits } from '../../stores/SwapStore';
 import { useSwapStore } from '../../stores/SwapStore';
 import { FromToken } from '../FromToken/FromToken';
+import { ToToken } from '../ToToken/ToToken';
 import {
   ButtonWrapper,
   Container,
@@ -64,12 +66,14 @@ export const SwapWidget = () => {
             placeholder="HOURS"
             value={durationUnits}
             items={hoursItems}
-            onSelectChange={setDurationUnits}
+            onSelectChange={(value: string) =>
+              setDurationUnits(value as DurationUnits)
+            }
           />
         </HeaderInputContainer>
       </HorizontalFlexBox>
       <FromToken />
-      <FromToken />
+      <ToToken />
       <ForContainer>
         <SelectLabel>For</SelectLabel>
         <RadixSelect
