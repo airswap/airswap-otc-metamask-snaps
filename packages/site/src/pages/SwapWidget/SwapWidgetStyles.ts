@@ -11,9 +11,7 @@ export const Container = styled.div`
   width: 60%;
   padding: 2rem;
   border-radius: 3px;
-  border: solid gray 1px;
-  background: black;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const HorizontalFlexBox = styled.div`
@@ -55,6 +53,9 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
   width: 100%;
   margin: 2rem 0;
+  border: solid #34425c 1px;
+  border-radius: 6px;
+  background: #0e1b37;
 `;
 
 export const ButtonWrapper = styled.div`

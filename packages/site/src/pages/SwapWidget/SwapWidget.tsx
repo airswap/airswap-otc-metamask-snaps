@@ -69,13 +69,6 @@ export const SwapWidget = () => {
           />
         </ForContainer>
 
-        <InputWrapper isHidden={takerType === 'anyone'}>
-          <TextInput
-            placeholder="Enter taker address or ENS"
-            defaultValue={takerAddress}
-            onTextChange={setTakerAddress}
-          />
-        </InputWrapper>
         {/* duration container */}
         <HorizontalFlexBox>
           <ExpiryContainer>
@@ -105,6 +98,14 @@ export const SwapWidget = () => {
           </ExpiryContainer>
         </HorizontalFlexBox>
       </HorizontalFlexBox>
+
+      <InputWrapper isHidden={takerType === 'anyone'}>
+        <TextInput
+          placeholder="Enter taker address or ENS"
+          defaultValue={takerAddress}
+          onTextChange={setTakerAddress}
+        />
+      </InputWrapper>
 
       <ButtonWrapper>
         <SwapButton label="back" onClick={() => null} />
