@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 
-type TakerTypeValues = 'anyone' | 'specificTaker';
+import { convertToUnixTimestamp } from '../utils/convertToUnixTimestamp';
+
+type TakerTypeValues = 'anyone' | `0x${string}`;
+
+export type DurationUnits = 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS';
 
 type SwapStore = {
   fromToken: string | undefined;
@@ -10,11 +14,11 @@ type SwapStore = {
   takerType: TakerTypeValues;
   takerAddress: string | undefined;
   durationLength: number;
-  durationUnits: string;
+  durationUnits: DurationUnits;
   expiry: number;
   rate: number;
   fee: number;
-  total: number; // fromAmount + fee
+
   setFromToken: (token: string | undefined) => void;
   setToToken: (token: string | undefined) => void;
   setFromAmount: (amount: number | undefined) => void;
@@ -22,11 +26,10 @@ type SwapStore = {
   setTakerType: (value: TakerTypeValues) => void;
   setTakerAddress: (address: string | undefined) => void;
   setDurationLength: (durationLength: number) => void;
-  setDurationUnits: (durationUnits: string) => void;
-  setExpiry: (date: number) => void;
+  setDurationUnits: (durationUnits: DurationUnits) => void;
+  setExpiry: (numberInput: number, units: DurationUnits) => void; // Updated signature
   setRate: (rate: number) => void;
   setFee: (fee: number) => void;
-  setTotal: (total: number) => void;
 };
 
 export const useSwapStore = create<SwapStore>((set) => ({
@@ -37,11 +40,11 @@ export const useSwapStore = create<SwapStore>((set) => ({
   takerType: 'anyone',
   takerAddress: undefined,
   durationLength: 1,
-  durationUnits: 'hours',
+  durationUnits: 'HOURS',
   expiry: Math.floor(Date.now() / 1000),
   rate: 0,
   fee: 0,
-  total: 0,
+
   setFromToken: (token: string | undefined) => set({ fromToken: token }),
   setToToken: (token: string | undefined) => set({ toToken: token }),
   setFromAmount: (amount: number | undefined) => set({ fromAmount: amount }),
@@ -50,9 +53,14 @@ export const useSwapStore = create<SwapStore>((set) => ({
   setTakerAddress: (address: string | undefined) =>
     set({ takerAddress: address }),
   setDurationLength: (durationLength: number) => set({ durationLength }),
-  setDurationUnits: (durationUnits: string) => set({ durationUnits }),
-  setExpiry: (date: number) => set({ expiry: date }),
+  setDurationUnits: (durationUnits: DurationUnits) => set({ durationUnits }),
+
+  // Use convertToUnixTimestamp to calculate expiry
+  setExpiry: (numberInput: number, units: DurationUnits) =>
+    set(() => ({
+      expiry: convertToUnixTimestamp({ numberInput, units }),
+    })),
+
   setRate: (rate: number) => set({ rate }),
   setFee: (fee: number) => set({ fee }),
-  setTotal: (total: number) => set({ total }),
 }));

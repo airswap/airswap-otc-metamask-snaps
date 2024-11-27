@@ -1,18 +1,6 @@
 import * as Select from '@radix-ui/react-select';
 import styled from 'styled-components';
 
-type SelectItem = {
-  value: string;
-  label: string;
-};
-
-type SelectProps = {
-  ariaLabel: string;
-  placeholder: string;
-  items: SelectItem[];
-  onSelectChange: (value: any) => void;
-};
-
 const StyledTrigger = styled(Select.Trigger)`
   font-size: 12px;
   background-color: black;
@@ -40,14 +28,28 @@ const StyledItem = styled(Select.Item)`
   }
 `;
 
+type SelectItem = {
+  value: string;
+  label: string;
+};
+
+type SelectProps = {
+  ariaLabel: string;
+  placeholder: string;
+  value?: string; // Add value prop
+  items: SelectItem[];
+  onSelectChange: (value: string) => void; // Ensure value is string
+};
+
 export const RadixSelect = ({
   ariaLabel,
   placeholder,
+  value = '',
   items,
   onSelectChange,
 }: SelectProps) => {
   return (
-    <Select.Root onValueChange={onSelectChange}>
+    <Select.Root value={value} onValueChange={onSelectChange}>
       <StyledTrigger aria-label={ariaLabel}>
         <Select.Value placeholder={placeholder} />
         <Select.Icon />
@@ -63,7 +65,6 @@ export const RadixSelect = ({
                 <Select.ItemIndicator />
               </StyledItem>
             ))}
-            <Select.Separator />
           </Select.Viewport>
           <Select.ScrollDownButton />
           <Select.Arrow />

@@ -5,10 +5,6 @@ import { ReactComponent as FlaskFox } from '../assets/flask_fox.svg';
 import { useMetaMask, useRequestSnap } from '../hooks';
 import { shouldDisplayReconnectButton } from '../utils';
 
-type SwapButtonProps = {
-  label: string;
-};
-
 const Link = styled.a`
   display: flex;
   align-self: flex-start;
@@ -74,23 +70,6 @@ const ConnectedIndicator = styled.div`
   background-color: green;
 `;
 
-const StyledSwapButton = styled.button`
-  display: flex;
-  color: white;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: #2c70ff;
-  text-transform: uppercase;
-  border-radius: 2px;
-  border: none;
-
-  &:hover {
-    background-color: #0c5cff;
-    border: solid 1px #3779f7;
-  }
-`;
-
 export const InstallFlaskButton = () => (
   <Link href="https://metamask.io/flask/" target="_blank">
     <FlaskFox />
@@ -143,8 +122,4 @@ export const HeaderButtons = () => {
       <ButtonText>Connected</ButtonText>
     </ConnectedContainer>
   );
-};
-
-export const SwapButton = ({ label }: SwapButtonProps) => {
-  return <StyledSwapButton>{label}</StyledSwapButton>;
 };

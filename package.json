@@ -54,7 +54,17 @@
   "lavamoat": {
     "allowScripts": {
       "@lavamoat/preinstall-always-fail": false,
-      "sharp": true
+      "sharp": true,
+      "@airswap/libraries>@airswap/utils>ethereumjs-util>ethereum-cryptography>keccak": false,
+      "@airswap/libraries>@airswap/utils>ethereumjs-util>ethereum-cryptography>secp256k1": false,
+      "@airswap/libraries>websocket>bufferutil": false,
+      "@airswap/libraries>websocket>es5-ext": false,
+      "@airswap/libraries>websocket>es5-ext>es6-iterator>es5-ext": false,
+      "@airswap/libraries>websocket>es5-ext>esniff>es5-ext": false,
+      "@airswap/libraries>websocket>utf-8-validate": false
     }
+  },
+  "dependencies": {
+    "@airswap/libraries": "^5.0.1"
   }
 }

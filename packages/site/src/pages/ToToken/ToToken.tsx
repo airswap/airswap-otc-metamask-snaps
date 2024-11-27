@@ -2,26 +2,26 @@ import { RadixSelect, NumberInput } from '../../components';
 import { useSwapStore } from '../../stores/SwapStore';
 import {
   AmountWrapper,
-  FromTokenContainer,
+  ToTokenContainer,
   TokenSelector,
-} from './FromTokenStyles';
+} from './ToTokenStyles';
 
-export const FromToken = () => {
-  const { setFromToken, setFromAmount } = useSwapStore();
+export const ToToken = () => {
+  const { setToToken, setToAmount } = useSwapStore();
   return (
-    <FromTokenContainer>
+    <ToTokenContainer>
       <TokenSelector>
-        From
+        To
         <RadixSelect
-          ariaLabel="from-token"
+          ariaLabel="to-token"
           placeholder="ETH"
           items={[{ value: 'ether', label: 'ether' }]}
-          onSelectChange={(value) => setFromToken(value)}
+          onSelectChange={(value) => setToToken(value)}
         />
       </TokenSelector>
       <AmountWrapper>
-        <NumberInput placeholder="0.00" onTextChange={setFromAmount} />
+        <NumberInput placeholder="0.00" onTextChange={setToAmount} />
       </AmountWrapper>
-    </FromTokenContainer>
+    </ToTokenContainer>
   );
 };

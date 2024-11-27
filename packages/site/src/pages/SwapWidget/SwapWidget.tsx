@@ -1,7 +1,13 @@
-import { NumberInput, RadixSelect, TextInput } from '../../components';
-import { SwapButton } from '../../components/Buttons';
-import { useSwapStore } from '../../store/SwapStore';
+import {
+  NumberInput,
+  RadixSelect,
+  TextInput,
+  SwapButton,
+} from '../../components';
+import type { DurationUnits } from '../../stores/SwapStore';
+import { useSwapStore } from '../../stores/SwapStore';
 import { FromToken } from '../FromToken/FromToken';
+import { ToToken } from '../ToToken/ToToken';
 import {
   ButtonWrapper,
   Container,
@@ -29,30 +35,14 @@ const takerItems = [
 export const SwapWidget = () => {
   const {
     takerType,
+    takerAddress,
+    durationLength,
+    durationUnits,
     setTakerType,
     setTakerAddress,
     setDurationLength,
     setDurationUnits,
   } = useSwapStore();
-
-  const handleDurationLength = (value: number) => {
-    setDurationLength(value);
-  };
-
-  const handleDurationUnits = (value: string) => {
-    setDurationUnits(value);
-  };
-
-  const handleTakerType = (value: 'anyone' | 'specificTaker') => {
-    setTakerType(value);
-    if (value === 'anyone') {
-      setTakerAddress(undefined);
-    }
-  };
-
-  const handleTakerAddressChange = (value: string) => {
-    setTakerAddress(value);
-  };
 
   return (
     <Container>
@@ -61,35 +51,56 @@ export const SwapWidget = () => {
         <HeaderInputContainer>
           <SelectLabel>Expires In</SelectLabel>
           <DurationContainer>
-            <NumberInput placeholder="1" onTextChange={handleDurationLength} />
+            <NumberInput
+              placeholder="1"
+              value={durationLength}
+              onTextChange={(value) => {
+                if (!Number.isNaN(value)) {
+                  setDurationLength(value);
+                }
+              }}
+            />
           </DurationContainer>
           <RadixSelect
             ariaLabel="hours"
             placeholder="HOURS"
+            value={durationUnits}
             items={hoursItems}
-            onSelectChange={handleDurationUnits}
+            onSelectChange={(value: string) =>
+              setDurationUnits(value as DurationUnits)
+            }
           />
         </HeaderInputContainer>
       </HorizontalFlexBox>
       <FromToken />
-      <FromToken />
+      <ToToken />
       <ForContainer>
         <SelectLabel>For</SelectLabel>
         <RadixSelect
           ariaLabel="for"
           placeholder="ANYONE"
+          value={takerType}
           items={takerItems}
-          onSelectChange={handleTakerType}
+          onSelectChange={(value) => {
+            if (value === 'anyone' || value.startsWith('0x')) {
+              setTakerType(value as 'anyone' | `0x${string}`);
+              if (value === 'anyone') {
+                setTakerAddress(undefined);
+              }
+            }
+          }}
         />
       </ForContainer>
-      <InputWrapper isHidden={takerType !== 'specificTaker'}>
+      <InputWrapper isHidden={takerType === 'anyone'}>
         <TextInput
           placeholder="Enter taker address or ENS"
-          onTextChange={handleTakerAddressChange}
+          defaultValue={takerAddress}
+          onTextChange={setTakerAddress}
         />
       </InputWrapper>
+
       <ButtonWrapper>
-        <SwapButton label={'review'} />
+        <SwapButton label="review" onClick={() => null} />
       </ButtonWrapper>
     </Container>
   );
