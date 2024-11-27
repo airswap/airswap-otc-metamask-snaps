@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 60%;
   padding: 2rem;
   border-radius: 3px;
   border: solid gray 1px;
@@ -18,19 +18,18 @@ export const Container = styled.div`
 
 export const HorizontalFlexBox = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
   width: 100%;
 `;
 
-export const SubHeading = styled.h3`
-  font-size: 18px;
+export const ExpiryContainer = styled.div`
+  width: 100%;
+  justify-items: end;
 `;
 
 export const HeaderInputContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: end;
 `;
 
 export const SelectLabel = styled.span`
@@ -59,6 +58,9 @@ export const InputWrapper = styled.div<InputWrapperProps>`
 `;
 
 export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
   width: 100%;
   margin: 2rem;
 `;

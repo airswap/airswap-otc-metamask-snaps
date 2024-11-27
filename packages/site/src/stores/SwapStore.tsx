@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { convertToUnixTimestamp } from '../utils/convertToUnixTimestamp';
 
-type TakerTypeValues = 'anyone' | `0x${string}`;
+export type TakerTypeValues = 'anyone' | `0x${string}`;
 
 export type DurationUnits = 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS';
 
@@ -27,7 +27,7 @@ type SwapStore = {
   setTakerAddress: (address: string | undefined) => void;
   setDurationLength: (durationLength: number) => void;
   setDurationUnits: (durationUnits: DurationUnits) => void;
-  setExpiry: (numberInput: number, units: DurationUnits) => void; // Updated signature
+  setExpiry: (numberInput: number, units: DurationUnits) => void;
   setRate: (rate: number) => void;
   setFee: (fee: number) => void;
 };
@@ -55,7 +55,6 @@ export const useSwapStore = create<SwapStore>((set) => ({
   setDurationLength: (durationLength: number) => set({ durationLength }),
   setDurationUnits: (durationUnits: DurationUnits) => set({ durationUnits }),
 
-  // Use convertToUnixTimestamp to calculate expiry
   setExpiry: (numberInput: number, units: DurationUnits) =>
     set(() => ({
       expiry: convertToUnixTimestamp({ numberInput, units }),

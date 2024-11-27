@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex: 1;
   margin-top: 7.6rem;
   margin-bottom: 7.6rem;
+  background: #0e1831;
   ${({ theme }) => theme.mediaQueries.small} {
     padding-left: 2.4rem;
     padding-right: 2.4rem;
