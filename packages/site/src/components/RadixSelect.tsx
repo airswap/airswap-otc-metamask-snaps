@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const StyledTrigger = styled(Select.Trigger)`
   font-size: 12px;
-  background: #13203d;
+  background: transparent;
   color: white;
-  border: solid gray 1px;
+  border: none;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 15px;
@@ -16,7 +16,9 @@ const StyledContent = styled(Select.Content)`
   font-size: 12px;
   background: #13203d;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  border: solid darkgray 1px;
+  border: solid #34425c 1px;
+  border-radius: 10px;
+  padding: 1rem;
 `;
 
 const StyledItem = styled(Select.Item)`

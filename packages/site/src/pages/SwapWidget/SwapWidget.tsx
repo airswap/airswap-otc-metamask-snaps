@@ -70,33 +70,31 @@ export const SwapWidget = () => {
         </ForContainer>
 
         {/* duration container */}
-        <HorizontalFlexBox>
-          <ExpiryContainer>
-            <HeaderInputContainer>
-              <SelectLabel>Expires In</SelectLabel>
-              <DurationContainer>
-                <NumberInput
-                  placeholder="1"
-                  value={durationLength}
-                  onTextChange={(value) => {
-                    if (!Number.isNaN(value)) {
-                      setDurationLength(value);
-                    }
-                  }}
-                />
-              </DurationContainer>
-              <RadixSelect
-                ariaLabel="hours"
-                placeholder="HOURS"
-                value={durationUnits}
-                items={hoursItems}
-                onSelectChange={(value: string) =>
-                  setDurationUnits(value as DurationUnits)
-                }
+        <ExpiryContainer>
+          <HeaderInputContainer>
+            <SelectLabel>Expires In</SelectLabel>
+            <DurationContainer>
+              <NumberInput
+                placeholder="1"
+                value={durationLength}
+                onTextChange={(value) => {
+                  if (!Number.isNaN(value)) {
+                    setDurationLength(value);
+                  }
+                }}
               />
-            </HeaderInputContainer>
-          </ExpiryContainer>
-        </HorizontalFlexBox>
+            </DurationContainer>
+            <RadixSelect
+              ariaLabel="hours"
+              placeholder="HOURS"
+              value={durationUnits}
+              items={hoursItems}
+              onSelectChange={(value: string) =>
+                setDurationUnits(value as DurationUnits)
+              }
+            />
+          </HeaderInputContainer>
+        </ExpiryContainer>
       </HorizontalFlexBox>
 
       <InputWrapper isHidden={takerType === 'anyone'}>

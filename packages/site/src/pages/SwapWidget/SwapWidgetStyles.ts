@@ -17,35 +17,42 @@ export const HorizontalFlexBox = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-`;
-
-export const ExpiryContainer = styled.div`
-  width: 100%;
-  justify-items: end;
-`;
-
-export const HeaderInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const SelectLabel = styled.span`
-  padding: 1rem;
-  border: solid gray 1px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-`;
-
-export const DurationContainer = styled.div`
-  width: 4rem;
-  border: solid gray 1px;
+  gap: 1rem;
 `;
 
 export const ForContainer = styled.div`
   display: flex;
   width: 100%;
+  border: solid #34425c 1px;
+  border-radius: 10px;
   flex-direction: row;
   align-items: center;
+`;
+
+export const ExpiryContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+`;
+
+export const HeaderInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: solid #34425c 1px;
+  border-radius: 10px;
+`;
+
+export const SelectLabel = styled.span`
+  padding: 1rem;
+  color: #798bad;
+`;
+
+export const DurationContainer = styled.div`
+  display: flex;
+
+  padding: 1rem;
+  justify-self: center;
+  border: solid #34425c 1px;
 `;
 
 export const InputWrapper = styled.div<InputWrapperProps>`
