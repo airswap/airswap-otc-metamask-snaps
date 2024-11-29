@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const ReviewScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  width: 80%;
+  align-items: center;
+  width: 60%;
+  padding: 2rem;
   gap: 1.5rem;
-  background: black;
-  border: solid white 1px;
+  border-radius: 3px;
+
+  font-size: 16px;
 `;
 
 export const ReviewHeadline = styled.h1`
@@ -20,6 +21,7 @@ export const HorizontalBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
   padding: 0 2rem;
 `;
 

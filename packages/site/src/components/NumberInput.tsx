@@ -9,12 +9,12 @@ type NumberInputProps = {
 
 const Input = styled.input`
   display: flex;
-  width: 100%;
-  border: solid #1a1e25 2px;
-  border-radius: 2px;
+  text-align: end;
+  border: none;
   padding: 1rem;
-  background: #181228;
+  background: transparent;
   color: white;
+  width: 100%;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

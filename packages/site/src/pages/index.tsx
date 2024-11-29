@@ -40,7 +40,7 @@ const Index = () => {
 
   return (
     <Container>
-      <Heading>AirSwap OTC</Heading>
+      <Heading>OTC</Heading>
       <SwapWidget />
       <ReviewScreen />
       {/* <SignedOrderScreen /> */}

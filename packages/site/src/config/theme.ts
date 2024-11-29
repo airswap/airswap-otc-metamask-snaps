@@ -37,45 +37,6 @@ const theme = {
 };
 
 /**
- * Light theme color properties.
- */
-export const light: DefaultTheme = {
-  colors: {
-    background: {
-      default: '#FFFFFF',
-      alternative: '#F2F4F6',
-      inverse: '#141618',
-    },
-    icon: {
-      default: '#141618',
-      alternative: '#BBC0C5',
-    },
-    text: {
-      default: '#24272A',
-      muted: '#6A737D',
-      alternative: '#535A61',
-      inverse: '#FFFFFF',
-    },
-    border: {
-      default: '#BBC0C5',
-    },
-    primary: {
-      default: '#6F4CFF',
-      inverse: '#FFFFFF',
-    },
-    card: {
-      default: '#FFFFFF',
-    },
-    error: {
-      default: '#d73a49',
-      alternative: '#b92534',
-      muted: '#d73a4919',
-    },
-  },
-  ...theme,
-};
-
-/**
  * Dark theme color properties
  */
 export const dark: DefaultTheme = {

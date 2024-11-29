@@ -11,10 +11,10 @@ type TextInputProps = {
 const Input = styled.input`
   display: flex;
   width: 100%;
-  border: solid #1a1e25 2px;
-  border-radius: 2px;
+  border: solid #34425c 1px;
+  border-radius: 10px;
   padding: 1rem;
-  background: #181228;
+  background: #13203d;
   color: white;
 `;
 
