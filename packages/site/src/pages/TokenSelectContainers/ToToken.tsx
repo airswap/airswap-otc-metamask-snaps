@@ -2,14 +2,14 @@ import { RadixSelect, NumberInput } from '../../components';
 import { useSwapStore } from '../../stores/SwapStore';
 import {
   AmountWrapper,
-  ToTokenContainer,
+  TokenContainer,
   TokenSelector,
-} from './ToTokenStyles';
+} from './FromTokenStyles';
 
 export const ToToken = () => {
   const { setToToken, setToAmount } = useSwapStore();
   return (
-    <ToTokenContainer>
+    <TokenContainer>
       <TokenSelector>
         To
         <RadixSelect
@@ -22,6 +22,6 @@ export const ToToken = () => {
       <AmountWrapper>
         <NumberInput placeholder="0.00" onTextChange={setToAmount} />
       </AmountWrapper>
-    </ToTokenContainer>
+    </TokenContainer>
   );
 };

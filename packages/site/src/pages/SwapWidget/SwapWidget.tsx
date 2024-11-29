@@ -6,8 +6,8 @@ import {
 } from '../../components';
 import type { DurationUnits, TakerTypeValues } from '../../stores/SwapStore';
 import { useSwapStore } from '../../stores/SwapStore';
-import { FromToken } from '../FromToken/FromToken';
-import { ToToken } from '../ToToken/ToToken';
+import { FromToken } from '../TokenSelectContainers/FromToken';
+import { ToToken } from '../TokenSelectContainers/ToToken';
 import {
   ButtonWrapper,
   Container,
