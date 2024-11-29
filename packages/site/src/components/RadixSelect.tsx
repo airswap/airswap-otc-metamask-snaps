@@ -2,14 +2,11 @@ import * as Select from '@radix-ui/react-select';
 import styled from 'styled-components';
 
 const StyledTrigger = styled(Select.Trigger)`
+  width: 100%;
   font-size: 12px;
   background: transparent;
   color: white;
   border: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
 `;
 
 const StyledContent = styled(Select.Content)`
@@ -19,6 +16,10 @@ const StyledContent = styled(Select.Content)`
   border: solid #34425c 1px;
   border-radius: 10px;
   padding: 1rem;
+
+  &:hover {
+    border: solid #34425c 1px;
+  }
 `;
 
 const StyledItem = styled(Select.Item)`
@@ -27,6 +28,7 @@ const StyledItem = styled(Select.Item)`
   cursor: pointer;
   &:hover {
     background-color: #21396a;
+    // border: solid 1px #34425c;
   }
 `;
 

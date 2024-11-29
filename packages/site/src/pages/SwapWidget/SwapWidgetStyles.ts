@@ -42,17 +42,31 @@ export const HeaderInputContainer = styled.div`
   border-radius: 10px;
 `;
 
-export const SelectLabel = styled.span`
+export const SelectLabelFor = styled.span`
+  display: flex;
+  flex-direction: row;
   padding: 1rem;
   color: #798bad;
+  padding-left: 2rem;
+  padding-right: 2rem;
+`;
+
+export const SelectLabelExpiresIn = styled.span`
+  display: flex;
+  flex-direction: row;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: #798bad;
+  border-right: solid #34425c 1px;
 `;
 
 export const DurationContainer = styled.div`
   display: flex;
+`;
 
+export const SelectWrapper = styled.div`
+  border-left: solid #34425c 1px;
   padding: 1rem;
-  justify-self: center;
-  border: solid #34425c 1px;
 `;
 
 export const InputWrapper = styled.div<InputWrapperProps>`

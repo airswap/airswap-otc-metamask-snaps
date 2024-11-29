@@ -18,6 +18,9 @@ import {
   HorizontalFlexBox,
   InputWrapper,
   SelectLabel,
+  SelectLabelExpiresIn,
+  SelectLabelFor,
+  SelectWrapper,
 } from './SwapWidgetStyles';
 
 const hoursItems = [
@@ -51,28 +54,30 @@ export const SwapWidget = () => {
       {/* wrapper around 'for' and 'expires in' containers */}
       <HorizontalFlexBox>
         <ForContainer>
-          <SelectLabel>For</SelectLabel>
-          <RadixSelect
-            ariaLabel="for"
-            placeholder="anyone"
-            value={takerType}
-            items={takerItems}
-            onSelectChange={(value: string) => {
-              // Handle `anyone` or `0x...` address
-              if (value === 'anyone' || value.startsWith('0x')) {
-                setTakerType(value as TakerTypeValues);
-                if (value === 'anyone') {
-                  setTakerAddress(undefined); // Clear taker address for `anyone`
+          <SelectLabelFor>For</SelectLabelFor>
+          <SelectWrapper>
+            <RadixSelect
+              ariaLabel="for"
+              placeholder="anyone"
+              value={takerType}
+              items={takerItems}
+              onSelectChange={(value: string) => {
+                // Handle `anyone` or `0x...` address
+                if (value === 'anyone' || value.startsWith('0x')) {
+                  setTakerType(value as TakerTypeValues);
+                  if (value === 'anyone') {
+                    setTakerAddress(undefined); // Clear taker address for `anyone`
+                  }
                 }
-              }
-            }}
-          />
+              }}
+            />
+          </SelectWrapper>
         </ForContainer>
 
         {/* duration container */}
         <ExpiryContainer>
           <HeaderInputContainer>
-            <SelectLabel>Expires In</SelectLabel>
+            <SelectLabelExpiresIn>Expires In</SelectLabelExpiresIn>
             <DurationContainer>
               <NumberInput
                 placeholder="1"
@@ -84,15 +89,17 @@ export const SwapWidget = () => {
                 }}
               />
             </DurationContainer>
-            <RadixSelect
-              ariaLabel="hours"
-              placeholder="HOURS"
-              value={durationUnits}
-              items={hoursItems}
-              onSelectChange={(value: string) =>
-                setDurationUnits(value as DurationUnits)
-              }
-            />
+            <SelectWrapper>
+              <RadixSelect
+                ariaLabel="hours"
+                placeholder="HOURS"
+                value={durationUnits}
+                items={hoursItems}
+                onSelectChange={(value: string) =>
+                  setDurationUnits(value as DurationUnits)
+                }
+              />
+            </SelectWrapper>
           </HeaderInputContainer>
         </ExpiryContainer>
       </HorizontalFlexBox>
