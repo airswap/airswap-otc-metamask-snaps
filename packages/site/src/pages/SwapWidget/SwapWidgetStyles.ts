@@ -10,7 +10,6 @@ export const Container = styled.div`
   align-items: center;
   width: 60%;
   padding: 2rem;
-  border-radius: 3px;
   font-size: 16px;
 `;
 
@@ -53,8 +52,6 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
   width: 100%;
   margin: 2rem 0;
-  border: solid #34425c 1px;
-  border-radius: 6px;
   background: #0e1b37;
 `;
 

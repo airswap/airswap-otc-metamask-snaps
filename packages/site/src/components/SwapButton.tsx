@@ -13,7 +13,7 @@ const StyledSwapButton = styled.button`
   width: 100%;
   background: #2c70ff;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 10px;
   border: none;
 
   &:hover {

@@ -8,8 +8,9 @@ export const ToTokenContainer = styled.div`
   padding: 1rem;
   margin: 1rem;
   font-size: 18px;
-  border: solid darkgray 1px;
-  border-radius: 2px;
+  border: solid #34425c 1px;
+  border-radius: 10px;
+  background: #13203d;
 `;
 
 export const TokenSelector = styled.div`

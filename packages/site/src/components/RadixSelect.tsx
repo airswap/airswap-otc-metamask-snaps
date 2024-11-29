@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledTrigger = styled(Select.Trigger)`
   font-size: 12px;
-  background-color: black;
+  background: #13203d;
   color: white;
   border: solid gray 1px;
   border-top-left-radius: 0;
@@ -14,7 +14,7 @@ const StyledTrigger = styled(Select.Trigger)`
 
 const StyledContent = styled(Select.Content)`
   font-size: 12px;
-  background-color: black;
+  background: #13203d;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   border: solid darkgray 1px;
 `;
