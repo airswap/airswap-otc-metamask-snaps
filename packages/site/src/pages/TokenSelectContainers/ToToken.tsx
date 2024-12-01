@@ -1,27 +1,23 @@
-import { RadixSelect, NumberInput } from '../../components';
+import { NumberInput } from '../../components';
 import { useSwapStore } from '../../stores/SwapStore';
 import {
   AmountWrapper,
+  FromTokenSpan,
   TokenContainer,
   TokenImage,
   TokenSelector,
   VerticalBox,
 } from './FromTokenStyles';
 
-export const ToToken = () => {
-  const { setToToken, setToAmount } = useSwapStore();
+export const ToToken = ({ openModal }: { openModal: () => void }) => {
+  const { toToken, setToAmount } = useSwapStore();
   return (
     <TokenContainer>
       <TokenImage src="" alt="" />
       <TokenSelector>
         <VerticalBox>
-          To
-          <RadixSelect
-            ariaLabel="to-token"
-            placeholder="ETH"
-            items={[{ value: 'ether', label: 'ether' }]}
-            onSelectChange={(value) => setToToken(value)}
-          />
+          From
+          <FromTokenSpan onClick={openModal}>{toToken ?? 'ETH'}</FromTokenSpan>
         </VerticalBox>
       </TokenSelector>
       <AmountWrapper>

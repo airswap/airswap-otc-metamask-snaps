@@ -8,6 +8,7 @@ import type { DurationUnits, TakerTypeValues } from '../../stores/SwapStore';
 import { useSwapStore } from '../../stores/SwapStore';
 import { FromToken } from '../TokenSelectContainers/FromToken';
 import { ToToken } from '../TokenSelectContainers/ToToken';
+import { TokenSelectorModal } from '../TokenSelectorModal/TokenSelectorModal';
 import {
   ButtonWrapper,
   Container,
@@ -17,7 +18,6 @@ import {
   HeaderInputContainer,
   HorizontalFlexBox,
   InputWrapper,
-  SelectLabel,
   SelectLabelExpiresIn,
   SelectLabelFor,
   SelectWrapper,
@@ -41,16 +41,41 @@ export const SwapWidget = () => {
     takerAddress,
     durationLength,
     durationUnits,
+    isTokenSelectorModalOpen,
+    modalTokenType,
+    openTokenSelectorModal,
+    closeTokenSelectorModal,
+    setFromToken,
+    setToToken,
     setTakerType,
     setTakerAddress,
     setDurationLength,
     setDurationUnits,
   } = useSwapStore();
 
+  // Handle token selection from modal
+  const handleTokenSelect = (selectedToken: string) => {
+    if (modalTokenType === 'fromToken') {
+      setFromToken(selectedToken);
+    } else if (modalTokenType === 'toToken') {
+      setToToken(selectedToken);
+    }
+    closeTokenSelectorModal();
+  };
+
   return (
     <Container>
-      <FromToken />
-      <ToToken />
+      <FromToken openModal={() => openTokenSelectorModal('fromToken')} />
+      <ToToken openModal={() => openTokenSelectorModal('toToken')} />
+
+      {/* Token Selector Modal */}
+      {isTokenSelectorModalOpen && (
+        <TokenSelectorModal
+          onClose={closeTokenSelectorModal}
+          onTokenSelect={handleTokenSelect} // Pass handler for token selection
+        />
+      )}
+
       {/* wrapper around 'for' and 'expires in' containers */}
       <HorizontalFlexBox>
         <ForContainer>

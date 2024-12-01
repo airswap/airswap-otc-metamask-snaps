@@ -29,6 +29,10 @@ export const VerticalBox = styled.div`
   flex-direction: column;
 `;
 
+export const FromTokenSpan = styled.span`
+  color: white;
+`;
+
 export const TokenSelector = styled.div`
   display: flex;
   width: 50%;

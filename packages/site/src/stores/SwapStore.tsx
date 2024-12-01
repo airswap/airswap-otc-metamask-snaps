@@ -18,6 +18,9 @@ type SwapStore = {
   expiry: number;
   rate: number;
   fee: number;
+  // Modal state
+  isTokenSelectorModalOpen: boolean;
+  modalTokenType: 'fromToken' | 'toToken' | null;
 
   setFromToken: (token: string | undefined) => void;
   setToToken: (token: string | undefined) => void;
@@ -30,9 +33,13 @@ type SwapStore = {
   setExpiry: (numberInput: number, units: DurationUnits) => void;
   setRate: (rate: number) => void;
   setFee: (fee: number) => void;
+  // Modal handlers
+  openTokenSelectorModal: (tokenType: 'fromToken' | 'toToken') => void;
+  closeTokenSelectorModal: () => void;
 };
 
 export const useSwapStore = create<SwapStore>((set) => ({
+  // initial state
   fromToken: undefined,
   toToken: undefined,
   fromAmount: 0,
@@ -44,6 +51,9 @@ export const useSwapStore = create<SwapStore>((set) => ({
   expiry: Math.floor(Date.now() / 1000),
   rate: 0,
   fee: 0,
+
+  isTokenSelectorModalOpen: false,
+  modalTokenType: null,
 
   setFromToken: (token: string | undefined) => set({ fromToken: token }),
   setToToken: (token: string | undefined) => set({ toToken: token }),
@@ -62,4 +72,10 @@ export const useSwapStore = create<SwapStore>((set) => ({
 
   setRate: (rate: number) => set({ rate }),
   setFee: (fee: number) => set({ fee }),
+
+  // Modal handlers
+  openTokenSelectorModal: (tokenType: 'fromToken' | 'toToken') =>
+    set({ isTokenSelectorModalOpen: true, modalTokenType: tokenType }),
+  closeTokenSelectorModal: () =>
+    set({ isTokenSelectorModalOpen: false, modalTokenType: null }),
 }));
