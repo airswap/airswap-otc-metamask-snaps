@@ -7,6 +7,10 @@ import {
   TokenList,
   TokenItem,
   EditCustomTokensButton,
+  InputContainer,
+  CloseButton,
+  SelectTokenHeader,
+  OutlineDiv,
 } from './TokenSelectorModalStyles';
 
 type TokenSelectorModalProps = {
@@ -51,15 +55,16 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
 
   return (
     <StyledDialog ref={modalRef}>
+      <CloseButton onClick={handleCloseModal}>X</CloseButton>
       <ModalHeader>
-        <h3>Select Token</h3>
-        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-        <button onClick={handleCloseModal}>&times;</button>
+        <SelectTokenHeader>Select Token</SelectTokenHeader>
       </ModalHeader>
-      <TextInput
-        placeholder="Search name or paste address"
-        onTextChange={() => null}
-      />
+      <InputContainer>
+        <TextInput
+          placeholder="Search name or paste address"
+          onTextChange={() => null}
+        />
+      </InputContainer>
       <TokenList>
         <span>Token</span>
         {tokens.map((token) => (
@@ -74,6 +79,7 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
           </TokenItem>
         ))}
       </TokenList>
+      <OutlineDiv>Expanded results from inactive Token Lists</OutlineDiv>
       <EditCustomTokensButton>Edit Custom Tokens</EditCustomTokensButton>
     </StyledDialog>
   );
