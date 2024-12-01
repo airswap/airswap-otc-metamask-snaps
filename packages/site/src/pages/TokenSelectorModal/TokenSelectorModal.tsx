@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 
+import { TextInput } from '../../components';
 import {
-  CloseButton,
   StyledDialog,
-  TokenItem,
+  ModalHeader,
   TokenList,
+  TokenItem,
+  EditCustomTokensButton,
 } from './TokenSelectorModalStyles';
 
 type TokenSelectorModalProps = {
@@ -42,10 +44,24 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
 
   const tokens = ['ETH', 'DAI', 'USDT', 'WBTC']; // Example token list
 
+  const handleCloseModal = () => {
+    onClose();
+    modalRef.current?.close();
+  };
+
   return (
     <StyledDialog ref={modalRef}>
-      <h3>Select a Token</h3>
+      <ModalHeader>
+        <h3>Select Token</h3>
+        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+        <button onClick={handleCloseModal}>&times;</button>
+      </ModalHeader>
+      <TextInput
+        placeholder="Search name or paste address"
+        onTextChange={() => null}
+      />
       <TokenList>
+        <span>Token</span>
         {tokens.map((token) => (
           <TokenItem
             key={token}
@@ -58,14 +74,7 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
           </TokenItem>
         ))}
       </TokenList>
-      <CloseButton
-        onClick={() => {
-          onClose();
-          modalRef.current?.close();
-        }}
-      >
-        Close
-      </CloseButton>
+      <EditCustomTokensButton>Edit Custom Tokens</EditCustomTokensButton>
     </StyledDialog>
   );
 };
