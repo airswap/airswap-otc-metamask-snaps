@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { TextInput } from '../../components';
+import { useSwapStore } from '../../stores';
 import {
   StyledDialog,
   ModalHeader,
@@ -14,8 +15,8 @@ import {
 } from './TokenSelectorModalStyles';
 
 type TokenSelectorModalProps = {
-  onClose: () => void; // Callback to close the modal
-  onTokenSelect: (token: string) => void; // Callback when a token is selected
+  onClose: () => void;
+  onTokenSelect: (token: string) => void;
 };
 
 export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
@@ -23,6 +24,7 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
   onTokenSelect,
 }) => {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const { modalTokenType, setFromToken, setToToken } = useSwapStore();
 
   useEffect(() => {
     const dialog = modalRef.current;
@@ -53,6 +55,14 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
     modalRef.current?.close();
   };
 
+  const handleTextInputChange = (value: string) => {
+    if (modalTokenType === 'fromToken') {
+      setFromToken(value);
+    } else if (modalTokenType === 'toToken') {
+      setToToken(value);
+    }
+  };
+
   return (
     <StyledDialog ref={modalRef}>
       <CloseButton onClick={handleCloseModal}>X</CloseButton>
@@ -62,10 +72,11 @@ export const TokenSelectorModal: React.FC<TokenSelectorModalProps> = ({
       <InputContainer>
         <TextInput
           placeholder="Search name or paste address"
-          onTextChange={() => null}
+          onTextChange={() => handleTextInputChange}
         />
       </InputContainer>
       <TokenList>
+        {/* FIXME: replace the token loop below with tokens found in user's web3 wallet */}
         <span>Token</span>
         {tokens.map((token) => (
           <TokenItem
