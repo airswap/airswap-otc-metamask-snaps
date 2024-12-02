@@ -72,11 +72,10 @@ export const SwapWidget = () => {
       {isTokenSelectorModalOpen && (
         <TokenSelectorModal
           onClose={closeTokenSelectorModal}
-          onTokenSelect={handleTokenSelect} // Pass handler for token selection
+          onTokenSelect={handleTokenSelect}
         />
       )}
 
-      {/* wrapper around 'for' and 'expires in' containers */}
       <HorizontalFlexBox>
         <ForContainer>
           <SelectLabelFor>For</SelectLabelFor>

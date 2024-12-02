@@ -6,17 +6,24 @@ export const TokenContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1rem;
+  padding: 2rem;
   margin: 1rem;
-  font-size: 18px;
   border: solid #34425c 1px;
   border-radius: 10px;
   background: #13203d;
   color: #798bad;
   font-weight: semibold;
+  font-weight: 800;
+  font-size: 20px;
+`;
+
+export const VerbSpan = styled.span`
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const TokenImage = styled.img`
+  margin-right: 1rem;
   border: solid white 1px;
   width: 35px;
   height: 35px;

@@ -13,8 +13,15 @@ const Input = styled.input`
   border: none;
   padding: 1rem;
   background: transparent;
+  // color: #5a709d;
   color: white;
   width: 100%;
+  font-size: 28px;
+  font-weight: 500;
+
+  &::placeholder {
+    color: #5a709d;
+  }
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

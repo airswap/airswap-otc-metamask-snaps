@@ -6,6 +6,7 @@ import {
   TokenContainer,
   TokenImage,
   TokenSelector,
+  VerbSpan,
   VerticalBox,
 } from './FromTokenStyles';
 
@@ -17,11 +18,9 @@ export const FromToken = ({ openModal }: { openModal: () => void }) => {
       <TokenContainer>
         <TokenImage src="" alt="" />
         <TokenSelector>
-          <VerticalBox>
-            From
-            <FromTokenSpan onClick={openModal}>
-              {fromToken ?? 'ETH'}
-            </FromTokenSpan>
+          <VerticalBox onClick={openModal}>
+            <VerbSpan>From</VerbSpan>
+            <FromTokenSpan>{fromToken ?? 'ETH'}</FromTokenSpan>
           </VerticalBox>
         </TokenSelector>
         <AmountWrapper>
