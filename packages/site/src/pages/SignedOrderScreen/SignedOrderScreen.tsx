@@ -5,8 +5,12 @@ import {
   ActionButtonsBox,
   FromToTokenBox,
   HorizontalBox,
+  HorizontalDiv,
+  OpenLinkButton,
   SignedOrderScreenContainer,
   SpecifiedTakerAndExpiryBox,
+  StyledH3,
+  TokenImageContainer,
   VerbSpan,
   VerticalBox,
 } from './SignedOrderScreenStyles';
@@ -31,20 +35,40 @@ export const SignedOrderScreen = () => {
 
   return (
     <SignedOrderScreenContainer>
-      <h3>Order</h3>
+      <StyledH3>Order</StyledH3>
       <FromToTokenBox>
-        <VerticalBox>
-          <VerbSpan>From</VerbSpan>
-          <span>{fromToken}</span>
-        </VerticalBox>
-        <HorizontalBox>{fromAmount?.toString() ?? 0}</HorizontalBox>
+        <HorizontalDiv>
+          {/* FIXME: button opens etherscan link for contract address. Also fix icon */}
+          <OpenLinkButton onClick={() => null}>↗️</OpenLinkButton>
+          <VerticalBox>
+            <VerbSpan>From</VerbSpan>
+            <span>{fromToken}</span>
+          </VerticalBox>
+        </HorizontalDiv>
+        <HorizontalBox>
+          {fromAmount?.toString() ?? 0}
+          <TokenImageContainer>
+            {/* FIXME: replace with correct path to token image */}
+            <img src="" alt="" />
+          </TokenImageContainer>
+        </HorizontalBox>
       </FromToTokenBox>
       <FromToTokenBox>
-        <VerticalBox>
-          <VerbSpan>To</VerbSpan>
-          <span>{toToken}</span>
-        </VerticalBox>
-        <VerticalBox>{toAmount?.toString()}</VerticalBox>
+        <HorizontalDiv>
+          {/* FIXME: button opens etherscan link for contract address. Also fix icon */}
+          <OpenLinkButton onClick={() => null}>↗️</OpenLinkButton>
+          <VerticalBox>
+            <VerbSpan>To</VerbSpan>
+            <span>{toToken}</span>
+          </VerticalBox>
+        </HorizontalDiv>
+        <HorizontalBox>
+          {toAmount?.toString() ?? 0}
+          <TokenImageContainer>
+            {/* FIXME: replace with correct path to token image */}
+            <img src="" alt="" />
+          </TokenImageContainer>
+        </HorizontalBox>
       </FromToTokenBox>
       <SpecifiedTakerAndExpiryBox>
         <HorizontalBox>
