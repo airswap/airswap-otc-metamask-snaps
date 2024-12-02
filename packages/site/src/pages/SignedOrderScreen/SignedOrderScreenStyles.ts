@@ -7,27 +7,37 @@ export const SignedOrderScreenContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
-export const FromTokenBox = styled.div`
+export const HorizontalBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 1rem;
+`;
+
+export const FromToTokenBox = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   background: #13203c;
   border: #34425c solid 1.5px;
   border-radius: 12px;
   padding: 1rem;
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
 `;
 
-export const ToTokenBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background: #13203c;
-  border: #34425c solid 1.5px;
-  border-radius: 12px;
-  padding: 1rem;
+export const VerbSpan = styled.span`
+  color: #798bad;
+  font-weight: 600;
+  font-size: 16px;
+`;
+
+export const TokenDataSpan = styled.span`
+  font-weight: 900;
 `;
 
 export const SpecifiedTakerAndExpiryBox = styled.div`
@@ -51,11 +61,5 @@ export const ActionButtonsBox = styled.div`
 export const VerticalBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-`;
-
-export const HorizontalBox = styled.div`
-  display: flex;
-  flex-direction: row;
   margin: 1rem;
 `;

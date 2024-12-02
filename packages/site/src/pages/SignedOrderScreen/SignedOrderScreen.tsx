@@ -3,24 +3,17 @@ import { SwapButton } from '../../components';
 import { useSwapStore } from '../../stores';
 import {
   ActionButtonsBox,
-  FromTokenBox,
+  FromToTokenBox,
   HorizontalBox,
   SignedOrderScreenContainer,
   SpecifiedTakerAndExpiryBox,
-  ToTokenBox,
+  VerbSpan,
   VerticalBox,
 } from './SignedOrderScreenStyles';
 
 export const SignedOrderScreen = () => {
   const { fromToken, fromAmount, toToken, toAmount, takerAddress, expiry } =
-    useSwapStore((state) => ({
-      fromToken: state.fromToken,
-      fromAmount: state.fromAmount,
-      toToken: state.toToken,
-      toAmount: state.toAmount,
-      takerAddress: state.takerAddress,
-      expiry: state.expiry,
-    }));
+    useSwapStore();
   // const handleCopyLink = async () => {
   //   // FIXME: Replace `undefined` with actual values
   //   const compressedURL = compressFullOrderURL(undefined);
@@ -38,26 +31,32 @@ export const SignedOrderScreen = () => {
 
   return (
     <SignedOrderScreenContainer>
-      <FromTokenBox>
+      <h3>Order</h3>
+      <FromToTokenBox>
         <VerticalBox>
-          <span>From</span>
-          <span>{fromToken ?? 'WETH'}</span>
+          <VerbSpan>From</VerbSpan>
+          <span>{fromToken}</span>
         </VerticalBox>
         <HorizontalBox>{fromAmount?.toString() ?? 0}</HorizontalBox>
-      </FromTokenBox>
-      <ToTokenBox>
+      </FromToTokenBox>
+      <FromToTokenBox>
         <VerticalBox>
-          <span>To</span>
-          <span>{toToken ?? 'USDC'}</span>
+          <VerbSpan>To</VerbSpan>
+          <span>{toToken}</span>
         </VerticalBox>
-        <VerticalBox>{toAmount?.toString() ?? 0}</VerticalBox>
-      </ToTokenBox>
+        <VerticalBox>{toAmount?.toString()}</VerticalBox>
+      </FromToTokenBox>
       <SpecifiedTakerAndExpiryBox>
-        <HorizontalBox>For {takerAddress ?? 'Anyone'}</HorizontalBox>
+        <HorizontalBox>
+          <VerbSpan>For: {takerAddress ?? 'Anyone'}</VerbSpan>
+        </HorizontalBox>
         <HorizontalBox>Expires in {expiry}</HorizontalBox>
       </SpecifiedTakerAndExpiryBox>
       <HorizontalBox>
-        1 {fromToken} = 333.333{toToken}
+        <VerbSpan>
+          {/* FIXME: remove placeholders and add conversioin rate */}1{' '}
+          {fromToken} = 333.333{toToken}
+        </VerbSpan>
       </HorizontalBox>
       <ActionButtonsBox>
         {/* FIXME: add cb function */}
