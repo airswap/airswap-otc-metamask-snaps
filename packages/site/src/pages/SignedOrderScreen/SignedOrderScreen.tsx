@@ -3,6 +3,7 @@ import { IoMdOpen } from 'react-icons/io';
 import { SwapButton } from '../../components';
 // import { compressFullOrderURL } from '../../utils/compressFullOrderERC20';
 import { useSwapStore } from '../../stores';
+import { convertExpiryToHumanReadableFormat } from '../../utils/convertExpiryToHumanReadableFormat';
 import {
   ActionButtonsBox,
   FromToTokenBox,
@@ -33,6 +34,8 @@ export const SignedOrderScreen = () => {
   //     console.error('Compressed URL is undefined or invalid');
   //   }
   // };
+
+  const expirationDate = convertExpiryToHumanReadableFormat(expiry);
 
   return (
     <SignedOrderScreenContainer>
@@ -93,7 +96,15 @@ export const SignedOrderScreen = () => {
         <HorizontalBox>
           <VerbSpan>For: {takerAddress ?? 'Anyone'}</VerbSpan>
         </HorizontalBox>
-        <HorizontalBox>Expires in {expiry}</HorizontalBox>
+        <HorizontalBox>
+          {expirationDate ? (
+            <>
+              <VerbSpan>Expires in </VerbSpan>&nbsp; {expirationDate}
+            </>
+          ) : (
+            <VerbSpan>Expired</VerbSpan>
+          )}
+        </HorizontalBox>
       </SpecifiedTakerAndExpiryBox>
       <HorizontalBox>
         <VerbSpan>
