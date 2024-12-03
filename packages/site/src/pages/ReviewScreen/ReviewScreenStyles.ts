@@ -4,7 +4,7 @@ export const ReviewScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 50%;
   padding: 2rem;
   gap: 1.5rem;
   border-radius: 3px;

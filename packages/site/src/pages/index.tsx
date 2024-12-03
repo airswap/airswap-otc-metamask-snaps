@@ -21,7 +21,7 @@ import {
   Notice,
 } from './IndexStyles';
 import { ReviewScreen } from './ReviewScreen/ReviewScreen';
-// import { SignedOrderScreen } from './SignedOrderScreen/SignedOrderScreen';
+import { SignedOrderScreen } from './SignedOrderScreen/SignedOrderScreen';
 import { SwapWidget } from './SwapWidget/SwapWidget';
 
 const Index = () => {
@@ -43,7 +43,7 @@ const Index = () => {
       <Heading>OTC</Heading>
       <SwapWidget />
       <ReviewScreen />
-      {/* <SignedOrderScreen /> */}
+      <SignedOrderScreen />
 
       {/* Snaps boilerplate code below */}
       <CardContainer>
