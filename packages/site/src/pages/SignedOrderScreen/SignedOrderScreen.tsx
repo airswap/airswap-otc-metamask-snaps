@@ -1,3 +1,5 @@
+import { IoMdOpen } from 'react-icons/io';
+
 import { SwapButton } from '../../components';
 // import { compressFullOrderURL } from '../../utils/compressFullOrderERC20';
 import { useSwapStore } from '../../stores';
@@ -6,7 +8,6 @@ import {
   FromToTokenBox,
   HorizontalBox,
   HorizontalDiv,
-  OpenLinkButton,
   SignedOrderScreenContainer,
   SpecifiedTakerAndExpiryBox,
   StyledH3,
@@ -39,7 +40,16 @@ export const SignedOrderScreen = () => {
       <FromToTokenBox>
         <HorizontalDiv>
           {/* FIXME: button opens etherscan link for contract address. Also fix icon */}
-          <OpenLinkButton onClick={() => null}>↗️</OpenLinkButton>
+          <IoMdOpen
+            size={16}
+            style={{
+              border: 'solid #798bad 0.5px',
+              borderRadius: '50%',
+              padding: '0.5rem',
+              color: '#798bad',
+            }}
+            onClick={() => null}
+          />
           <VerticalBox>
             <VerbSpan>From</VerbSpan>
             <span>{fromToken}</span>
@@ -56,7 +66,16 @@ export const SignedOrderScreen = () => {
       <FromToTokenBox>
         <HorizontalDiv>
           {/* FIXME: button opens etherscan link for contract address. Also fix icon */}
-          <OpenLinkButton onClick={() => null}>↗️</OpenLinkButton>
+          <IoMdOpen
+            size={16}
+            style={{
+              border: 'solid #798bad 0.5px',
+              borderRadius: '50%',
+              padding: '0.5rem',
+              color: '#798bad',
+            }}
+            onClick={() => null}
+          />
           <VerticalBox>
             <VerbSpan>To</VerbSpan>
             <span>{toToken}</span>

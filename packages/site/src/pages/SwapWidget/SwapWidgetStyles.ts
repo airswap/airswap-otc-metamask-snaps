@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 50%;
   padding: 2rem;
   font-size: 16px;
 `;

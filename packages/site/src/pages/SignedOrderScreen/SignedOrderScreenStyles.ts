@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SignedOrderScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
   justify-content: center;
   align-items: center;
   padding: 1rem;
@@ -26,19 +26,6 @@ export const HorizontalDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-export const OpenLinkButton = styled.button`
-  display: flex;
-  align-items: center;
-  place-content: center;
-  color: #798bad;
-  background: transparent;
-  border: solid #798bad 0.5px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 0;
 `;
 
 export const FromToTokenBox = styled.div`
