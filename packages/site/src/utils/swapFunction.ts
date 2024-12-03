@@ -28,7 +28,7 @@ type SwapParams = {
  * @param params.senderToken - Address of the token being swapped by the sender.
  * @param params.senderAmount - Amount of the token being swapped by the sender.
  * @param params.signature - Signature authorizing the swap.
- * @returns {Promise<ethers.ContractTransaction>} - A promise that resolves to the transaction response.
+ * @returns A promise that resolves to the transaction response.
  */
 export const executeSwap = async ({
   nonce,
@@ -50,7 +50,7 @@ export const executeSwap = async ({
     const web3Provider = new Web3Provider(
       provider as unknown as ExternalProvider,
     );
-    const { chainId } = await web3Provider.getNetwork();
+    const chainId = Number(provider.chainId);
 
     const signer = web3Provider.getSigner();
     const swapContract = Swap.getContract(web3Provider, chainId);

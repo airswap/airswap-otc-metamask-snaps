@@ -1,5 +1,11 @@
+import { Swap } from '@airswap/libraries';
+import type { ExternalProvider } from '@ethersproject/providers';
+import { Web3Provider } from '@ethersproject/providers';
+
 import { SwapButton } from '../../components';
+import { useMetaMaskContext } from '../../hooks/MetamaskContext';
 import { useSwapStore } from '../../stores/SwapStore';
+import { executeSwap } from '../../utils/swapFunction';
 import {
   ReviewHeadline,
   ReviewScreenContainer,
@@ -9,12 +15,33 @@ import {
 } from './ReviewScreenStyles';
 
 export const ReviewScreen = () => {
-  const fromToken = useSwapStore((state) => state.fromToken);
-  const fromAmount = useSwapStore((state) => state.fromAmount);
-  const toToken = useSwapStore((state) => state.toToken);
-  const toAmount = useSwapStore((state) => state.toAmount);
-  const takerAddress = useSwapStore((state) => state.takerAddress);
-  const expiry = useSwapStore((state) => state.expiry);
+  const { expiry, fromToken, fromAmount, toToken, toAmount, takerAddress } =
+    useSwapStore();
+
+  const { provider } = useMetaMaskContext();
+  // const web3Provider = new Web3Provider(
+  //   provider as unknown as ExternalProvider,
+  // );
+  // const signer = web3Provider.getSigner();
+  // const address = await signer.getAddress();
+
+  console.log(provider);
+
+  const chainId = Number(provider?.chainId);
+  // const swapContract = Swap.getContract(web3Provider, chainId);
+  // console.log('chainId:', chainId);
+
+  // const swapParams = {
+  //   nonce: BigInt(1),
+  //   expiry: BigInt(expiry),
+  //   signerWallet: '0x',
+  //   signerToken: fromToken,
+  //   signerAmount: fromAmount,
+  //   senderToken: toToken,
+  //   senderAmount: toAmount,
+  //   signature: '0x',
+  // };
+  // const swapLink = executeSwap(swapParams);
 
   return (
     <ReviewScreenContainer>
