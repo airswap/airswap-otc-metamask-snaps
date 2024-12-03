@@ -51,6 +51,7 @@ export const SwapWidget = () => {
     setTakerAddress,
     setDurationLength,
     setDurationUnits,
+    setExpiry,
   } = useSwapStore();
 
   // Handle token selection from modal
@@ -109,6 +110,7 @@ export const SwapWidget = () => {
                 onTextChange={(value) => {
                   if (!Number.isNaN(value)) {
                     setDurationLength(value);
+                    setExpiry(value, durationUnits);
                   }
                 }}
               />
@@ -119,9 +121,10 @@ export const SwapWidget = () => {
                 placeholder="HOURS"
                 value={durationUnits}
                 items={hoursItems}
-                onSelectChange={(value: string) =>
-                  setDurationUnits(value as DurationUnits)
-                }
+                onSelectChange={(value: string) => {
+                  setDurationUnits(value as DurationUnits);
+                  setExpiry(durationLength, value as DurationUnits);
+                }}
               />
             </SelectWrapper>
           </HeaderInputContainer>

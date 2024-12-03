@@ -66,7 +66,7 @@ export const SpecifiedTakerAndExpiryBox = styled.div`
   justify-content: space-between;
   width: 100%;
   background: #13203c;
-  border: #34425c solid 1.5px;
+  border: #34425c solid 1px;
   border-radius: 12px;
   padding: 1rem;
 `;
