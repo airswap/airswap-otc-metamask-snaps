@@ -2137,7 +2137,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ethersproject/providers@npm:5.7.2":
+"@ethersproject/providers@npm:5.7.2, @ethersproject/providers@npm:^5.7.2":
   version: 5.7.2
   resolution: "@ethersproject/providers@npm:5.7.2"
   dependencies:
@@ -18715,6 +18715,7 @@ __metadata:
   dependencies:
     "@airswap/libraries": ^5.0.1
     "@airswap/utils": ^5.0.1
+    "@ethersproject/providers": ^5.7.2
     "@metamask/eslint-config": ^12.2.0
     "@metamask/eslint-config-browser": ^12.1.0
     "@metamask/eslint-config-jest": ^12.1.0

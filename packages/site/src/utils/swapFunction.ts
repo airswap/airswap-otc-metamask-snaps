@@ -16,20 +16,6 @@ type SwapParams = {
   signature: string;
 };
 
-/**
- * Executes a swap transaction using the AirSwap library.
- *
- * @param params - The parameters required to perform the swap.
- * @param params.nonce - Unique identifier for the swap transaction.
- * @param params.expiry - Expiry timestamp for the swap.
- * @param params.signerWallet - Address of the signer’s wallet.
- * @param params.signerToken - Address of the token being swapped by the signer.
- * @param params.signerAmount - Amount of the token being swapped by the signer.
- * @param params.senderToken - Address of the token being swapped by the sender.
- * @param params.senderAmount - Amount of the token being swapped by the sender.
- * @param params.signature - Signature authorizing the swap.
- * @returns {Promise<ethers.ContractTransaction>} - A promise that resolves to the transaction response.
- */
 export const executeSwap = async ({
   nonce,
   expiry,
