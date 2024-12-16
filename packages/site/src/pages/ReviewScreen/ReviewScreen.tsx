@@ -1,11 +1,12 @@
 import { Swap } from '@airswap/libraries';
 import type { ExternalProvider } from '@ethersproject/providers';
 import { Web3Provider } from '@ethersproject/providers';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { SwapButton } from '../../components';
 import { useMetaMaskContext } from '../../hooks';
 import { useSwapStore } from '../../stores/SwapStore';
+import { convertExpiryToHumanReadableFormat } from '../../utils/convertExpiryToHumanReadableFormat';
 import {
   ReviewHeadline,
   ReviewScreenContainer,
@@ -15,36 +16,45 @@ import {
 } from './ReviewScreenStyles';
 
 export const ReviewScreen = () => {
-  const [fee, setFee] = useState<string | undefined>(undefined);
-  const { fromToken, fromAmount, toToken, toAmount, takerAddress, expiry } =
-    useSwapStore();
+  const {
+    fromToken,
+    fromAmount,
+    toToken,
+    toAmount,
+    takerAddress,
+    expiry,
+    setFee,
+    fee,
+  } = useSwapStore();
 
-  // const { provider } = useMetaMaskContext();
+  const expirationDate = convertExpiryToHumanReadableFormat(expiry);
 
-  // useEffect(() => {
-  //   const initializeContract = () => {
-  //     if (!provider) {
-  //       console.error('MetaMask provider not found.');
-  //       return;
-  //     }
+  const { provider } = useMetaMaskContext();
 
-  //     try {
-  //       const web3Provider = new Web3Provider(
-  //         provider as unknown as ExternalProvider,
-  //       );
-  //       const network = web3Provider.getNetwork();
-  //       const swapContract = Swap.getContract(web3Provider, network.chainId);
-  //       const feeFromContract = swapContract.fee;
-  //       setFee(feeFromContract);
+  useEffect(() => {
+    const initializeContract = async () => {
+      if (!provider) {
+        console.error('MetaMask provider not found.');
+        return;
+      }
 
-  //       setFee(fee);
-  //     } catch (error) {
-  //       console.error('Error initializing contract:', error);
-  //     }
-  //   };
+      try {
+        const web3Provider = new Web3Provider(
+          provider as unknown as ExternalProvider,
+        );
+        const network = await web3Provider.getNetwork();
+        const swapContract = Swap.getContract(web3Provider, network?.chainId);
+        const feeFromContract = swapContract.fee;
+        setFee(feeFromContract);
 
-  //   initializeContract();
-  // }, [provider]);
+        setFee(fee);
+      } catch (error) {
+        console.error('Error initializing contract:', error);
+      }
+    };
+
+    initializeContract();
+  }, [provider, setFee, fee]);
 
   return (
     <ReviewScreenContainer>
@@ -71,7 +81,7 @@ export const ReviewScreen = () => {
       </HorizontalBox>
       <HorizontalBox>
         <span>Expiry</span>
-        <span>{expiry}</span>
+        <span>{expirationDate}</span>
       </HorizontalBox>
       <HorizontalBox>
         <span>Rate</span>
