@@ -1,5 +1,6 @@
 import { SwapButton } from '../../components';
 import { useSwapStore } from '../../stores/SwapStore';
+import { convertExpiryToHumanReadableFormat } from '../../utils/convertExpiryToHumanReadableFormat';
 import {
   ReviewHeadline,
   ReviewScreenContainer,
@@ -9,12 +10,17 @@ import {
 } from './ReviewScreenStyles';
 
 export const ReviewScreen = () => {
-  const fromToken = useSwapStore((state) => state.fromToken);
-  const fromAmount = useSwapStore((state) => state.fromAmount);
-  const toToken = useSwapStore((state) => state.toToken);
-  const toAmount = useSwapStore((state) => state.toAmount);
-  const takerAddress = useSwapStore((state) => state.takerAddress);
-  const expiry = useSwapStore((state) => state.expiry);
+  const {
+    fromToken,
+    fromAmount,
+    toToken,
+    toAmount,
+    takerAddress,
+    expiry,
+    fee,
+  } = useSwapStore();
+
+  const expirationDate = convertExpiryToHumanReadableFormat(expiry);
 
   return (
     <ReviewScreenContainer>
@@ -41,7 +47,7 @@ export const ReviewScreen = () => {
       </HorizontalBox>
       <HorizontalBox>
         <span>Expiry</span>
-        <span>{expiry}</span>
+        <span>{expirationDate}</span>
       </HorizontalBox>
       <HorizontalBox>
         <span>Rate</span>
@@ -49,7 +55,7 @@ export const ReviewScreen = () => {
       </HorizontalBox>
       <HorizontalBox>
         <span>Fee</span>
-        <span>0.05 ETH</span>
+        <span>{`${fee}%`}</span>
       </HorizontalBox>
       <HorizontalBox>
         <span>Total</span>

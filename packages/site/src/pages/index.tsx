@@ -1,42 +1,40 @@
+// import {
+//   ConnectButton,
+//   InstallFlaskButton,
+//   ReconnectButton,
+//   SendHelloButton,
+//   Card,
+// } from '../components';
+// import { defaultSnapOrigin } from '../config';
+// import { useMetaMask, useInvokeSnap, useMetaMaskContext, useRequestSnap } from '../hooks';
+// import { isLocalSnap, shouldDisplayReconnectButton } from '../utils';
+import { useProtocolFee } from '../hooks/useProtocolFee';
 import {
-  ConnectButton,
-  InstallFlaskButton,
-  ReconnectButton,
-  SendHelloButton,
-  Card,
-} from '../components';
-import { defaultSnapOrigin } from '../config';
-import {
-  useMetaMask,
-  useInvokeSnap,
-  useMetaMaskContext,
-  useRequestSnap,
-} from '../hooks';
-import { isLocalSnap, shouldDisplayReconnectButton } from '../utils';
-import {
-  CardContainer,
+  // CardContainer,
   Container,
-  ErrorMessage,
+  // ErrorMessage,
   Heading,
-  Notice,
+  // Notice,
 } from './IndexStyles';
 import { ReviewScreen } from './ReviewScreen/ReviewScreen';
 import { SignedOrderScreen } from './SignedOrderScreen/SignedOrderScreen';
 import { SwapWidget } from './SwapWidget/SwapWidget';
 
 const Index = () => {
-  const { error } = useMetaMaskContext();
-  const { isFlask, snapsDetected, installedSnap } = useMetaMask();
-  const requestSnap = useRequestSnap();
-  const invokeSnap = useInvokeSnap();
+  // const { error } = useMetaMaskContext();
+  // const { isFlask, snapsDetected, installedSnap } = useMetaMask();
+  // const requestSnap = useRequestSnap();
+  // const invokeSnap = useInvokeSnap();
 
-  const isMetaMaskReady = isLocalSnap(defaultSnapOrigin)
-    ? isFlask
-    : snapsDetected;
+  // const isMetaMaskReady = isLocalSnap(defaultSnapOrigin)
+  //   ? isFlask
+  //   : snapsDetected;
 
-  const handleSendHelloClick = async () => {
-    await invokeSnap({ method: 'hello' });
-  };
+  // const handleSendHelloClick = async () => {
+  //   await invokeSnap({ method: 'hello' });
+  // };
+
+  useProtocolFee();
 
   return (
     <Container>
@@ -46,7 +44,7 @@ const Index = () => {
       <SignedOrderScreen />
 
       {/* Snaps boilerplate code below */}
-      <CardContainer>
+      {/* <CardContainer>
         {error && (
           <ErrorMessage>
             <b>An error happened:</b> {error.message}
@@ -122,7 +120,7 @@ const Index = () => {
             field.
           </p>
         </Notice>
-      </CardContainer>
+      </CardContainer> */}
     </Container>
   );
 };
