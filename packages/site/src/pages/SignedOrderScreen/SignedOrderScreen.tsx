@@ -20,6 +20,7 @@ import {
 export const SignedOrderScreen = () => {
   const { fromToken, fromAmount, toToken, toAmount, takerAddress, expiry } =
     useSwapStore();
+
   // const handleCopyLink = async () => {
   //   // FIXME: Replace `undefined` with actual values
   //   const compressedURL = compressFullOrderURL(undefined);

@@ -1,10 +1,8 @@
-import { Swap } from '@airswap/libraries';
-import type { ExternalProvider } from '@ethersproject/providers';
-import { Web3Provider } from '@ethersproject/providers';
+import { SwapERC20 } from '@airswap/libraries';
+import { ethers } from 'ethers';
 import { useEffect } from 'react';
 
 import { SwapButton } from '../../components';
-import { useMetaMaskContext } from '../../hooks';
 import { useSwapStore } from '../../stores/SwapStore';
 import { convertExpiryToHumanReadableFormat } from '../../utils/convertExpiryToHumanReadableFormat';
 import {
@@ -29,32 +27,36 @@ export const ReviewScreen = () => {
 
   const expirationDate = convertExpiryToHumanReadableFormat(expiry);
 
-  const { provider } = useMetaMaskContext();
-
   useEffect(() => {
     const initializeContract = async () => {
-      if (!provider) {
+      if (typeof window === 'undefined' || !window.ethereum) {
         console.error('MetaMask provider not found.');
         return;
       }
 
       try {
-        const web3Provider = new Web3Provider(
-          provider as unknown as ExternalProvider,
+        const provider = new ethers.providers.Web3Provider(
+          window.ethereum as unknown as ethers.providers.ExternalProvider,
         );
-        const network = await web3Provider.getNetwork();
-        const swapContract = Swap.getContract(web3Provider, network?.chainId);
-        const feeFromContract = swapContract.fee;
-        setFee(feeFromContract);
 
-        setFee(fee);
+        // Get network information
+        const network = await provider.getNetwork();
+        const { chainId } = network;
+
+        // Initialize the Swap contract
+        const swapContract = SwapERC20.getContract(provider, chainId);
+        const feeFromContract = await swapContract.protocolFee();
+
+        setFee(feeFromContract);
+        console.log(`Protocol fee: ${feeFromContract.toString() as string}`);
       } catch (error) {
         console.error('Error initializing contract:', error);
       }
     };
 
-    initializeContract();
-  }, [provider, setFee, fee]);
+    // Call the function
+    initializeContract().catch((error) => console.error(error));
+  }, [setFee]);
 
   return (
     <ReviewScreenContainer>
@@ -89,7 +91,7 @@ export const ReviewScreen = () => {
       </HorizontalBox>
       <HorizontalBox>
         <span>Fee</span>
-        <span>0.05 ETH</span>
+        <span>{fee} ETH</span>
       </HorizontalBox>
       <HorizontalBox>
         <span>Total</span>
