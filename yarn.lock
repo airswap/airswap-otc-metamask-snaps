@@ -109,21 +109,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@airswap/utils@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@airswap/utils@npm:5.0.1"
-  dependencies:
-    "@metamask/eth-sig-util": ^5.0.2
-    "@uniswap/token-lists": ^1.0.0-beta.24
-    bignumber.js: ^9.0.1
-    ethereumjs-util: ^7.1.5
-    ethers: ^5.7.2
-    lz-string: ^1.5.0
-    valid-url: ^1.0.9
-  checksum: 668987205abd3422468aaa8e955b1afb3743ae43cb7b446688f57f97bdc11a8c1df0aedcb62ee6dc99e14ac7a6e0ad3023629dbbbd9983a8660f32f38800d129
-  languageName: node
-  linkType: hard
-
 "@airswap/wrapper@npm:5.0.0":
   version: 5.0.0
   resolution: "@airswap/wrapper@npm:5.0.0"
@@ -18748,8 +18733,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "site@workspace:packages/site"
   dependencies:
-    "@airswap/libraries": ^5.0.1
-    "@airswap/utils": ^5.0.1
     "@metamask/eslint-config": ^12.2.0
     "@metamask/eslint-config-browser": ^12.1.0
     "@metamask/eslint-config-jest": ^12.1.0

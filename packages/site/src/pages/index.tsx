@@ -8,6 +8,7 @@
 // import { defaultSnapOrigin } from '../config';
 // import { useMetaMask, useInvokeSnap, useMetaMaskContext, useRequestSnap } from '../hooks';
 // import { isLocalSnap, shouldDisplayReconnectButton } from '../utils';
+import { useProtocolFee } from '../hooks/useProtocolFee';
 import {
   // CardContainer,
   Container,
@@ -32,6 +33,8 @@ const Index = () => {
   // const handleSendHelloClick = async () => {
   //   await invokeSnap({ method: 'hello' });
   // };
+
+  useProtocolFee();
 
   return (
     <Container>
