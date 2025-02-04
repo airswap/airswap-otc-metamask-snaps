@@ -66,6 +66,6 @@
   },
   "dependencies": {
     "@airswap/libraries": "^5.0.1",
-    "@metamask/providers": "^18.2.0"
+    "@metamask/providers": "^20.0.0"
   }
 }
